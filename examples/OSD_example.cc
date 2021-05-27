@@ -2,7 +2,7 @@
 #include <leptonica/allheaders.h>
 int main()
 {
-    const char* inputfile = "/tesseract/testing/devatest-rotated-270.png";
+    const char* inputfile = "devatest-rotated-270.png";
     PIX *image = pixRead(inputfile);
     tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
     api->Init(NULL, "osd");
