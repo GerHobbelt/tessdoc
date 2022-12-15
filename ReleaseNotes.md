@@ -49,6 +49,7 @@ Table of Contents
 
 * Fix compiler warning [-Wsign-compare].
 * Fix compiler warnings caused by empty statements.
+* Fix some other compiler warnings.
 * Support up to 8 redirections when running OCR on a URL.
 * Fix broken msys2 build with GCC 11.
 * Add SPDX-License-Identifier to public include files.
@@ -72,9 +73,25 @@ This means less RAM consumption and faster program execution.
     * Many other improvements.
 * **General enhancements**
   * Add two new Leptonica based binarization methods: Adaptive Otsu and Sauvola. Use `tesseract --print-parameters | grep thresholding_` to see the relevant configurable parameters.
+  * Add new command line option `--loglevel`.
   * Add new option `-l` for `combine_tessdata` to see the network spec for traineddata that was trained with the LSTM engine.
-  * In previous releases `pdf.ttf` was needed for the PDF rendering. In 5.0.0 this file is no longer needed. The pseudo font is now embedded in the code.
   * lstmtraining: Interpret negative value for `--max_iterations` as epochs.
+  * In previous releases `pdf.ttf` was needed for the PDF rendering. In 5.0.0 this file is no longer needed. The pseudo font is now embedded in the code.
+* **Code modernization**
+  * Remove the custom data types `STRING`,  `GenericVector` and `PointerVector` from the public API. The `STRING` type, which was removed entirely from the codebase, was replaced by `std::string`. The `GenericVector` type, was mostly replaced in the codebase by `std::vector`. `PointerVector` was partialy replecd by `std::vector`.
+  * Use `std::bitset<16>` instead of custom `BITS16`.
+  * Replace malloc and free with modern C++ code. 
+  * Replace `strdup`and `free` by `std::string`.
+  * Replace some `snprintf` with `std::to_string`.
+  * Replace C-style type casts with C++ type casts (fix `-Wold-style-cast` compiler warnings). Remove unneeded type casts.
+  * Replace typedef structs with structs.
+  * Use `std::swap` instead of a custom function.
+  * Use `unique_ptr` / `make_unique` in more places.
+  * Modernize code using clang-tidy.
+  * Many other changes made to modernize the codebase.
+* **Training scripts**
+  * Remove the Bash based training scripts. If you still need these scripts, you can find them in the repository [history](https://github.com/tesseract-ocr/tesseract/tree/3b436a72c55107faf694baec2f14a542958e32c6/src/training). Please don't open new issues asking about these old unsupported scripts.
+  * Move the Python based training scripts to the [tesstrain repo](https://github.com/tesseract-ocr/tesstrain/tree/main/src/training).
 * **Build system** 
   * Refactor the Autotools build. It now uses non-recursive (auto)make.
 * **libtesseract API** 
