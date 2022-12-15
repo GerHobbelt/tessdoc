@@ -5,9 +5,10 @@ This page keeps the most up-to-date release notes.
 Table of Contents
 =================
 * [IN DEVELOPMENT](ReleaseNotes.md#in-development)
-* [Nov 30 2021 - V5.0.0](https://github.com/tesseract-ocr/tessdoc/blob/main/ReleaseNotes.md#tesseract-release-notes-nov-30-2021---v500)
-* [Nov 15 2021 - V4.1.3](https://github.com/tesseract-ocr/tessdoc/blob/main/ReleaseNotes.md#tesseract-release-notes-nov-15-2021---v413)
-* [Nov 14 2021 - V4.1.2](https://github.com/tesseract-ocr/tessdoc/blob/main/ReleaseNotes.md#tesseract-release-notes-nov-14-2021---v412)
+* [Jan 07 2022 - V5.0.1](ReleaseNotes.md#tesseract-release-notes-jan-07-2022---v501)
+* [Nov 30 2021 - V5.0.0](ReleaseNotes.md#tesseract-release-notes-nov-30-2021---v500)
+* [Nov 15 2021 - V4.1.3](ReleaseNotes.md#tesseract-release-notes-nov-15-2021---v413)
+* [Nov 14 2021 - V4.1.2](ReleaseNotes.md#tesseract-release-notes-nov-14-2021---v412)
 * [Dec 26 2019 - V4.1.1](#tesseract-release-notes-dec-26-2019---v411)
 * [Jul 07 2019 - V4.1.0](#tesseract-release-notes-jul-07-2019---v410)
 * [Oct 29 2018 - V4.0.0](#tesseract-release-notes-oct-29-2018---v400)
@@ -46,6 +47,10 @@ Table of Contents
 * [Binary compatibility report for Tesseract: 3.05.02 vs 4.0.0](https://abi-laboratory.pro/index.php?view=objects_report&l=tesseract&v1=3.05.02&v2=4.0.0)
 
 ## Changes made since last release
+
+Planned: Disable OpenMP by default when building with Autotools. 
+
+# Tesseract release notes Jan 07 2022 - V5.0.1
 
 * Fix broken msys2 build with GCC 11.
 * Support up to 8 redirections when running OCR on a URL.
@@ -105,7 +110,7 @@ This means less RAM consumption and faster program execution.
 * **libtesseract API** 
   * This release includes major changes to the public API. Version 5.0.0 is incompatible with 4.x. Developers using libtesseract need to adapt their code to these changes.
   * Reduce the number of public headers. This includes the `genericvector.h` and the `strng.h` headers files.
-  * Remove some unnessary methods from the APi.
+  * Remove some unnecessary methods from the APi.
 * **Source code layout reorganization, files renaming**
   * All public headers are now placed in the `include/tesseract` directory.
   * Rename `tess_version.h.in` to `version.h.in`.
