@@ -5,6 +5,7 @@ This page keeps the most up-to-date release notes.
 Table of Contents
 =================
 * [IN DEVELOPMENT](ReleaseNotes.md#in-development)
+* [Jul 06 2022 - V5.2.0](ReleaseNotes.md#tesseract-release-notes-jul-06-2022---v520)
 * [Mar 01 2022 - V5.1.0](ReleaseNotes.md#tesseract-release-notes-mar-01-2022---v510)
 * [Jan 07 2022 - V5.0.1](ReleaseNotes.md#tesseract-release-notes-jan-07-2022---v501)
 * [Nov 30 2021 - V5.0.0](ReleaseNotes.md#tesseract-release-notes-nov-30-2021---v500)
@@ -49,9 +50,9 @@ Table of Contents
 
 # Tesseract release notes Jul 06 2022 - V5.2.0
 
-* Add initial support for Intel AVX512F.
+* Add initial support for Intel AVX512F. This improves the performance for recognition with the 'best' models and for training.
 * C API: Add a function to init tesseract with traineddata from memory.
-* Add a new parameter `invert_threshold`. The default value is `0.7`. In previous 5.x versions, the inversion threshold was `0.5`, without a way to change this value by the user. The `tessedit_do_invert` paramerer is deprecated and will be removed in version 6.0. To complely disable textlines inversion, you can set `invert_threshold` value to `0.0`.
+* Add a new parameter `invert_threshold`. The default value is `0.7`. In previous 5.x versions, the inversion threshold was `0.5`, without a way to change this value by the user. The `tessedit_do_invert` paramerer is deprecated and will be removed in version 6.0. To completely disable textlines inversion, you can set `invert_threshold` value to `0.0`.
 * Fix for very large PDF files on 32 bit hosts.
 * Fix regression with UZN files.
 * Replace direct access to Leptonica internal data structures by function calls (this is necessary for compatibility with the next Leptonica release).
@@ -137,6 +138,8 @@ This means less RAM consumption and faster program execution.
   * Rename `platform.h` to `export.h`.
   * Move `src/api/tesseractmain.cpp` to `src/tesseract.cpp`.
   * `src/training` directory: Separate training tools from library.
+* **Updated requirements**
+  * For building Tesseract from source code, a compiler with good C++17 support is required.
 
 # Tesseract release notes Nov 15 2021 - V4.1.3
 
@@ -205,7 +208,7 @@ Changes in the Autotools build:
     * Tesseract now uses [semantic versioning](https://semver.org/).
     * Added an option to compile Tesseract without the code of the legacy OCR engine.
   * **Updated requirements**
-    * For building Tesseract from source code, a compiler with good C++ 11 support is required. See [here](https://github.com/tesseract-ocr/tesseract#installing-tesseract) for a list of officially supported compilers.
+    * For building Tesseract from source code, a compiler with good C++11 support is required.
     * Tesseract now requires Leptonica 1.74.0 or a higher version.
     * Update minimum required autoconf version to 2.63.
     * Training tools dependencies - Update minimum required versions: ICU 52.1, Pango 1.22.0.
@@ -226,7 +229,7 @@ https://github.com/tesseract-ocr/tesseract/commit/5338a5a8d5e4ebad).
     * Removed `tessedit_pageseg_mode 1`
 from hocr, pdf, and tsv config files. The user should explicitly use `--psm 1` if that is desired [(Commit ecfee53ba)](https://github.com/tesseract-ocr/tesseract/commit/ecfee53bac59e546).
     * The list of available languages and scripts is now sorted alphabetically.
-    * Parameter `unlv_tilde_crunching` changed to `false`, because of default values cause issues (#948, #1449) in cases of unlv output in Tesseract 4.
+    * The parameter `unlv_tilde_crunching` changed to `false`, because `true` as a value cause issues (#948, #1449) in Tesseract 4.
     * Added parameter: `min_characters_to_try`.
   * **Misc.**
     * Reorganized Tesseract's source tree. Most sources are now below the `src` directory.
