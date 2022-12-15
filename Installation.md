@@ -6,12 +6,28 @@ Tesseract doesn't have a built-in GUI, but there are several available from the 
 
 # Installation
 
-There are two parts to install, the engine itself, and the training data for a language.
-
-## Linux
+There are two parts to install, the engine itself, and the traineddata for the languages.
 
 Tesseract is available directly from many Linux distributions. The package is generally called **'tesseract'** or **'tesseract-ocr'** - search your distribution's repositories to find it.
-Thus you can install Tesseract 4.x and its developer tools on Ubuntu 18.x bionic by simply running:
+
+Packages for over 130 languages and over 35 scripts are also available directly from the Linux distributions. The language traineddata  packages are called **'tesseract-ocr-langcode'** and **'tesseract-ocr-script-scriptcode'**, where `langcode` is three letter language code and `scriptcode` is four letter script code. 
+
+**Examples:** tesseract-ocr-eng (**English**), tesseract-ocr-ara (**Arabic**), tesseract-ocr-chi-sim (**Simplified Chinese**), tesseract-ocr-script-latn (**Latin Script**),  tesseract-ocr-script-deva (**Devanagari script**), etc.
+
+** FOR EXPERTS ONLY.  **
+
+If you are experimenting with OCR Engine modes, you will need to manually install language training data beyond what is available in your Linux distribution. 
+
+[Various types of training data](Data-Files) can be found on [GitHub](https://github.com/tesseract-ocr/.md). Unpack and copy the .traineddata file into a 'tessdata' directory. The exact directory will depend both on the type of training data, and your Linux distribution. Possibilities are `/usr/share/tesseract-ocr/tessdata` or `/usr/share/tessdata` or `/usr/share/tesseract-ocr/4.00/tessdata`. 
+
+Training data for obsolete Tesseract versions [=< 3.02](https://sourceforge.net/projects/tesseract-ocr-alt/files/?source=navbar) reside in another location.
+
+If Tesseract is not available for your distribution, or you want to use a newer version than they offer, you can [compile your own](Compiling).
+
+### Ubuntu
+
+You can install Tesseract and its developer tools on Ubuntu by simply running:
+
 ```
 sudo apt install tesseract-ocr
 sudo apt install libtesseract-dev
@@ -27,31 +43,38 @@ If you are using a different release of ubuntu, then replace bionic with the res
 deb http://archive.ubuntu.com/ubuntu bionic universe
 ```
 
+### Debian packages
 
-Packages for over 130 languages and over 35 scripts are also available directly from the Linux distributions. The language packages are called **'tesseract-ocr-langcode'** and **'tesseract-ocr-script-scriptcode'**, where langcode is three letter language code and scriptcode is four letter script code. 
+* [Tesseract 4](https://notesalexp.org/tesseract-ocr/packages/)
+* [Tesseract 5](https://notesalexp.org/tesseract-ocr/packages5/)
+* [Tesseract 5 (devel)](https://notesalexp.org/tesseract-ocr/packages-dev/)
 
-**Examples:** tesseract-ocr-eng (**English**), tesseract-ocr-ara (**Arabic**), tesseract-ocr-chi-sim (**Simplified Chinese**), tesseract-ocr-script-latn (**Latin Script**),  tesseract-ocr-script-deva (**Devanagari script**), etc.
+### Raspbian packages
 
-For distributions that are supported by snapd you may also run the following command to install the `tesseract` built binaries([Don't have snapd installed?](https://snapcraft.io/docs/core/install)):
+* [Tesseract 4](https://notesalexp.org/tesseract-ocr/packages/)
+* [Tesseract 5](https://notesalexp.org/tesseract-ocr/packages5/)
+* [Tesseract 5 (devel)](https://notesalexp.org/tesseract-ocr/packages-dev/)
 
-    sudo snap install --channel=edge tesseract
+### Ubuntu packages
 
-The traineddata is currently not shipped with the snap package and must be placed manually to `~/snap/tesseract/current`.
+* [Tesseract 4](https://notesalexp.org/tesseract-ocr/packages/)
+* [Tesseract 5](https://notesalexp.org/tesseract-ocr/packages5/)
+* [Tesseract 5 (devel)](https://notesalexp.org/tesseract-ocr/packages-dev/)
 
-### Tesseract Development Version with LSTM engine and related traineddata
+### Ubuntu ppa
 
-_**5.x**_
+* [Tesseract 4](https://launchpad.net/~alex-p/+archive/ubuntu/tesseract-ocr)
+* [Tesseract 5](https://launchpad.net/~alex-p/+archive/ubuntu/tesseract-ocr5)
+* [Tesseract 5 (devel-daily)](https://launchpad.net/~alex-p/+archive/ubuntu/tesseract-ocr-daily)
 
-#### Ubuntu PPA
+## RHEL/CentOS/Scientific Linux, Fedora, openSUSE packages
 
-* [Ubuntu Focal 20.04](https://launchpad.net/~alex-p/+archive/ubuntu/tesseract-ocr-devel?field.series_filter=focal)
-* [Ubuntu Bionic 18.04](https://launchpad.net/~alex-p/+archive/ubuntu/tesseract-ocr-devel?field.series_filter=bionic)
+* [Tesseract 4](https://build.opensuse.org/project/show/home:Alexander_Pozdnyakov)
+* [Tesseract 5](https://build.opensuse.org/project/show/home:Alexander_Pozdnyakov:tesseract5)
 
-#### Debian
+See [Installation on OpenSuse](InstallationOpenSuse.md) page for detailed instructions.
 
-https://notesalexp.org/tesseract-ocr/
-
-#### AppImage
+### AppImage
 
 _Instruction_
 1. Download AppImage from [releases](https://github.com/AlexanderP/tesseract-appimage/releases) page
@@ -79,122 +102,13 @@ _Included traineddata files_
 * rus - Russian
 * spa - Spanish
 
-### Tesseract 4 packages with LSTM engine and related traineddata
+### snap
 
-#### Ubuntu
+For distributions that are supported by snapd you may also run the following command to install the `tesseract` built binaries([Don't have snapd installed?](https://snapcraft.io/docs/core/install)):
 
-##### 4.1.x
+    sudo snap install --channel=edge tesseract
 
-* [Ubuntu Focal 20.04](https://packages.ubuntu.com/focal/tesseract-ocr-all)
-
-##### 4.0.x
-
-* [Ubuntu Bionic 18.04](https://packages.ubuntu.com/bionic/tesseract-ocr-all)
-
-#### Ubuntu PPA 
-* [Ubuntu Focal 20.04](https://launchpad.net/~alex-p/+archive/ubuntu/tesseract-ocr?field.series_filter=focal)
-* [Ubuntu Bionic 18.04](https://launchpad.net/~alex-p/+archive/ubuntu/tesseract-ocr?field.series_filter=bionic)
-* [Ubuntu Xenial 16.04](https://launchpad.net/~alex-p/+archive/ubuntu/tesseract-ocr?field.series_filter=xenial)
-* [Ubuntu Trusty 14.04](https://launchpad.net/~alex-p/+archive/ubuntu/tesseract-ocr?field.series_filter=trusty)
-
-#### Debian
-
-##### 4.1.x
-
-* [Debian testing](https://packages.debian.org/testing/tesseract-ocr)
-* [Debian Sid (unstable)](https://packages.debian.org/sid/tesseract-ocr)
- 
-There are also 4.1.x packages for other versions of Debian, check it here [https://notesalexp.org/tesseract-ocr/](https://notesalexp.org/tesseract-ocr/)
-
-##### 4.0.x
-
-* [Debian 10 Buster (stable)](https://packages.debian.org/buster/tesseract-ocr)
-* [Debian 9 Stretch backports (oldstable)](https://packages.debian.org/stretch-backports/tesseract-ocr)
-
-#### Raspbian
-* [Raspbian Stretch(notesalexp.org)](https://notesalexp.org/tesseract-ocr/)
-* [Raspbian Buster](http://raspbian.org/RaspbianRepository)
-
-#### RHEL/CentOS/Scientific Linux, Fedora, openSUSE packages
-
-* [rpm package with tesseract-ocr](https://build.opensuse.org/project/show/home:Alexander_Pozdnyakov)
-
-For example to install Tesseract with German language traineddata:
-
-
-**For CentOS 8 run the following as root:**
-```
-dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/Alexander_Pozdnyakov/CentOS_8/
-rpm --import https://build.opensuse.org/projects/home:Alexander_Pozdnyakov/public_key
-dnf install tesseract
-dnf install tesseract-langpack-deu
-```
-
-**For RHEL 7 run the following as root:**
-
-```
-yum-config-manager --add-repo https://download.opensuse.org/repositories/home:/Alexander_Pozdnyakov/RHEL_7/
-yum update
-yum install tesseract 
-yum install tesseract-langpack-deu
-```
-
-**For CentOS 7 run the following as root:**
-```
-yum-config-manager --add-repo https://download.opensuse.org/repositories/home:/Alexander_Pozdnyakov/CentOS_7/
-sudo rpm --import https://build.opensuse.org/projects/home:Alexander_Pozdnyakov/public_key
-yum update
-yum install tesseract 
-yum install tesseract-langpack-deu
-```
-
-**For Scientific Linux 7 run the following as root:**
-```
-yum-config-manager --add-repo https://download.opensuse.org/repositories/home:/Alexander_Pozdnyakov/ScientificLinux_7/
-yum update
-yum install tesseract 
-yum install tesseract-langpack-deu
-```
-
-**For Fedora 32 run the following as root:**
-```
-dnf config-manager --add-repo https://download.opensuse.org/repositories/home:Alexander_Pozdnyakov/Fedora_32/home:Alexander_Pozdnyakov.repo
-dnf install tesseract
-dnf install tesseract-langpack-deu
-```
-
-**For Fedora 31 run the following as root:**
-```
-dnf config-manager --add-repo https://download.opensuse.org/repositories/home:Alexander_Pozdnyakov/Fedora_31/home:Alexander_Pozdnyakov.repo
-dnf install tesseract
-dnf install tesseract-langpack-deu
-```
-
-**For openSUSE Tumbleweed run the following as root:**
-```
-zypper addrepo https://download.opensuse.org/repositories/home:Alexander_Pozdnyakov/openSUSE_Tumbleweed/home:Alexander_Pozdnyakov.repo
-zypper refresh
-zypper install tesseract-ocr
-zypper install tesseract-ocr-traineddata-german
-```
-
-**For openSUSE Leap 15.0 run the following as root:**
-```
-zypper addrepo https://download.opensuse.org/repositories/home:Alexander_Pozdnyakov/openSUSE_Leap_15.0/home:Alexander_Pozdnyakov.repo
-zypper refresh
-zypper install tesseract-ocr
-zypper install tesseract-ocr-traineddata-german
-```
-
-### FOR EXPERTS ONLY. 
-
-If you are experimenting with OCR Engine modes, you will need to manually install language training data beyond what is available in your Linux distribution. 
-
-[Various types of training data](Data-Files) can be found on [GitHub](https://github.com/tesseract-ocr/.md). Unpack and copy the .traineddata file into a 'tessdata' directory. The exact directory will depend both on the type of training data, and your Linux distribution. Possibilities are `/usr/share/tesseract-ocr/tessdata` or `/usr/share/tessdata` or `/usr/share/tesseract-ocr/4.00/tessdata`. 
-
-Training data for obsolete Tesseract versions [=< 3.02](https://sourceforge.net/projects/tesseract-ocr-alt/files/?source=navbar) reside in another location.
-
-If Tesseract is not available for your distribution, or you want to use a newer version than they offer, you can [compile your own](Compiling).
+The traineddata is currently not shipped with the snap package and must be placed manually to `~/snap/tesseract/current`.
 
 ## macOS
 
@@ -226,7 +140,7 @@ e.g. `/usr/local/Cellar/tesseract/3.05.02/share/tessdata/`.
 
 ## Windows
 
-Installer for Windows for Tesseract 3.05, Tesseract 4 and development version 5.00 Alpha are available from [Tesseract at UB Mannheim](https://github.com/UB-Mannheim/tesseract/wiki). These include the training tools. Both 32-bit and 64-bit installers are available.
+Installer for Windows for Tesseract 3.05, Tesseract 4 and Tesseract 5 are available from [Tesseract at UB Mannheim](https://github.com/UB-Mannheim/tesseract/wiki). These include the training tools. Both 32-bit and 64-bit installers are available.
 
 An installer for the **OLD version 3.02** is available for Windows from our [download](Downloads.md) page.
 This includes the English training data.

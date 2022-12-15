@@ -5,6 +5,7 @@ This page keeps the most up-to-date release notes.
 Table of Contents
 =================
 * [IN DEVELOPMENT](ReleaseNotes.md#in-development)
+* [Mar 01 2022 - V5.1.0](ReleaseNotes.md#tesseract-release-notes-mar-01-2022---v510)
 * [Jan 07 2022 - V5.0.1](ReleaseNotes.md#tesseract-release-notes-jan-07-2022---v501)
 * [Nov 30 2021 - V5.0.0](ReleaseNotes.md#tesseract-release-notes-nov-30-2021---v500)
 * [Nov 15 2021 - V4.1.3](ReleaseNotes.md#tesseract-release-notes-nov-15-2021---v413)
@@ -48,7 +49,15 @@ Table of Contents
 
 ## Changes made since last release
 
-Planned: Disable OpenMP by default when building with Autotools. 
+TBD 
+
+# Tesseract release notes Mar 01 2022 - V5.1.0
+
+* Handle image and line separator regions in ALTO, hOCR and text output formats. 
+* Few other enhancements.
+* Small set of bug fixes.
+* Remove unused code.
+* Raise minimum required CMake version to 3.10.
 
 # Tesseract release notes Jan 07 2022 - V5.0.1
 
@@ -106,7 +115,7 @@ This means less RAM consumption and faster program execution.
 * **Build system** 
   * Refactor the Autotools build. It now uses non-recursive (auto)make.
   * configure.ac: Update minimum required autoconf version to 2.69.
-  * Raise Minimum required Pango version to 1.38.0.
+  * Raise minimum required Pango version to 1.38.0.
 * **libtesseract API** 
   * This release includes major changes to the public API. Version 5.0.0 is incompatible with 4.x. Developers using libtesseract need to adapt their code to these changes.
   * Reduce the number of public headers. This includes the `genericvector.h` and the `strng.h` headers files.
@@ -120,7 +129,7 @@ This means less RAM consumption and faster program execution.
 
 # Tesseract release notes Nov 15 2021 - V4.1.3
 
-Fix broken autoconf build.
+Fix broken autotools build.
 
 # Tesseract release notes Nov 14 2021 - V4.1.2
 
