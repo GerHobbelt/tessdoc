@@ -49,27 +49,25 @@ Table of Contents
 
 * Fix broken msys2 build with GCC 11.
 * Support up to 8 redirections when running OCR on a URL.
-* Catch nullptr in STATS::pile_count().
-* Remove NetworkIO::ZeroTimeStepGeneral(). This allows more inline code (optimization).
-* Update generator for lookup tables to use TFloat instead of double.
-* Fix clang compiler warnings in functions.h. The new code avoids some conversions between double and float, so it should also have a small positive effect on the performance.
-* Fix compiler warning [-Wsign-compare].
+* Catch `nullptr` in `STATS::pile_count()`.
+* Remove `NetworkIO::ZeroTimeStepGeneral()`. This allows more inline code (optimization).
+* Update generator for lookup tables to use `TFloat` instead of `double`.
+* Fix clang compiler warnings in `functions.h`. The new code avoids some conversions between `double` and `float`, so it should also have a small positive effect on the performance.
+* Fix compiler warning [`-Wsign-compare`].
 * Fix compiler warnings caused by empty statements.
 * Fix some other compiler warnings.
-* Add SPDX-License-Identifier to public include files.
+* Remove unused code.
+* Add `SPDX-License-Identifier` to public include files.
 
 CMake build:
-* Correctly detect amd64, x86_64, i386 and i686 targets.
+* Correctly detect `amd64`, `x86_64`, `i386` and `i686` targets.
 * Do not try to configure training tools if pkg-config is not present.
-* Installl tesseract configs files.
-
-Missing info, TBD.
-
+* Install tesseract configs files.
 
 # Tesseract release notes Nov 30 2021 - V5.0.0
 
 * **Significant performance improvements**
-  * Support float (32 bit) for LSTM model training and text recognition. float is now the default instead of double (64 bit). 
+  * Support `float` (32 bit) for LSTM model training and text recognition. `float` is now the default instead of `double` (64 bit). 
 This means less RAM consumption and faster program execution.
   * Try OCR on inverted line only if mean confidence is below 50% ([#3141](https://github.com/tesseract-ocr/tesseract/pull/3141)).
   * SIMD
@@ -77,13 +75,16 @@ This means less RAM consumption and faster program execution.
     * Many other improvements.
 * **General enhancements**
   * Add two new Leptonica based binarization methods: Adaptive Otsu and Sauvola. For users: Use `tesseract --print-parameters | grep thresholding_` to see the relevant configurable parameters.
-  * Disable music staff detection and removal because it interfere with the table detection feature. Change the default value of `pageseg_apply_music_mask` to `false`.
+  * Disable music staff detection and removal because it interferes with the table detection feature. Change the default value of `pageseg_apply_music_mask` to `false`.
   * Add new command line option `--loglevel`.
-  * Add new option `-l` for `combine_tessdata` to see the network spec for traineddata that was trained with the LSTM engine.
-  * lstmtraining: Interpret negative value for `--max_iterations` as epochs.
+  * Add new option `-l` for `combine_tessdata` to get the network spec for traineddata that was trained with the LSTM engine.
+  * `lstmtraining`tool: Interpret negative value for `--max_iterations` as epochs.
+  * Switch from NFKC to NFC normalization (or switch from NFKD to NFD if decompose mode is requested).
+  * Text output: Don't add a page separator to a single page image.
+  * hOCR output: Write `scan_res` property to the `ocr_page`.
   * In previous releases `pdf.ttf` was needed for the PDF rendering. In 5.0.0 this file is no longer needed. The pseudo font is now embedded in the code.
 * **Code modernization**
-  * Remove the custom data types `STRING`,  `GenericVector` and `PointerVector` from the public API. The `STRING` type, which was removed entirely from the codebase, was replaced by `std::string`. The `GenericVector` type, was mostly replaced in the codebase by `std::vector`. `PointerVector` was partialy replecd by `std::vector`.
+  * Remove the custom data types `STRING`,  `GenericVector` and `PointerVector` from the public API. The `STRING` type, which was removed entirely from the codebase, was replaced by `std::string`. The `GenericVector` type, was mostly replaced in the codebase by `std::vector`. `PointerVector` was partially replaced by `std::vector`.
   * Use `std::bitset<16>` instead of custom `BITS16`.
   * Replace malloc and free with modern C++ code. 
   * Replace `strdup`and `free` by `std::string`.
@@ -99,6 +100,8 @@ This means less RAM consumption and faster program execution.
   * Move the Python based training scripts to the [tesstrain repo](https://github.com/tesseract-ocr/tesstrain/tree/main/src/training).
 * **Build system** 
   * Refactor the Autotools build. It now uses non-recursive (auto)make.
+  * configure.ac: Update minimum required autoconf version to 2.69.
+  * Raise Minimum required Pango version to 1.38.0.
 * **libtesseract API** 
   * This release includes major changes to the public API. Version 5.0.0 is incompatible with 4.x. Developers using libtesseract need to adapt their code to these changes.
   * Reduce the number of public headers. This includes the `genericvector.h` and the `strng.h` headers files.
@@ -108,9 +111,7 @@ This means less RAM consumption and faster program execution.
   * Rename `tess_version.h.in` to `version.h.in`.
   * Rename `platform.h` to `export.h`.
   * Move `src/api/tesseractmain.cpp` to `src/tesseract.cpp`.
-  * `training` directory: Separate training tools from library.
-
-Missing more info, TBD.
+  * `src/training` directory: Separate training tools from library.
 
 # Tesseract release notes Nov 15 2021 - V4.1.3
 
@@ -118,18 +119,18 @@ Fix broken autoconf build.
 
 # Tesseract release notes Nov 14 2021 - V4.1.2
 
-* Move RowAttributes from LTRResultIterator to PageIterator.
-* Change the maximum allowed width of image to train on from 2560 to 4096.
-* Add SVMutex and SVSemaphore destructors to avoid system objects leaks.
-* Don't output empty ALTO sourceImageInformation.
+* Move `RowAttributes()` from `LTRResultIterator` to `PageIterator`.
+* Change the maximum allowed width of image to train on from `2560` to `4096`.
+* Add `SVMutex` and `SVSemaphore` destructors to avoid system objects leaks.
+* Don't output empty ALTO `sourceImageInformation`.
 * Extend URI support for Tesseract with libcurl.
 * Warn and stop LSTM training process done using integer model.
 
 Changes in the Autotools build:
 
 * Fix autoconf build for MacOS.
-* Fix automake warning because of redefined DEFAULT_INCLUDES.
-* Don't use compiler flags -march=native -mtune=native in autoconf builds.
+* Fix automake warning because of redefined `DEFAULT_INCLUDES`.
+* Don't use compiler flags `-march=native -mtune=native` in autoconf builds.
 * Make automake builds less noisy by default.
 
 # Tesseract release notes Dec 26 2019 - V4.1.1
