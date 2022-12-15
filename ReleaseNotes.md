@@ -5,6 +5,9 @@ This page keeps the most up-to-date release notes.
 Table of Contents
 =================
 * [IN DEVELOPMENT](ReleaseNotes.md#in-development)
+* [Nov 30 2021 - V5.0.0](https://github.com/tesseract-ocr/tessdoc/blob/main/ReleaseNotes.md#tesseract-release-notes-nov-30-2021---v500)
+* [Nov 15 2021 - V4.1.3](https://github.com/tesseract-ocr/tessdoc/blob/main/ReleaseNotes.md#tesseract-release-notes-nov-15-2021---v413)
+* [Nov 14 2021 - V4.1.2](https://github.com/tesseract-ocr/tessdoc/blob/main/ReleaseNotes.md#tesseract-release-notes-nov-14-2021---v412)
 * [Dec 26 2019 - V4.1.1](#tesseract-release-notes-dec-26-2019---v411)
 * [Jul 07 2019 - V4.1.0](#tesseract-release-notes-jul-07-2019---v410)
 * [Oct 29 2018 - V4.0.0](#tesseract-release-notes-oct-29-2018---v400)
@@ -44,14 +47,46 @@ Table of Contents
 
 ## Changes made since last release
 
+* Fix compiler warning [-Wsign-compare].
+* Fix compiler warnings caused by empty statements.
+* Support up to 8 redirections when running OCR on a URL.
+* Fix broken msys2 build with GCC 11.
+* Add SPDX-License-Identifier to public include files.
+
+CMake build:
+* Correctly detect amd64, x86_64, i386 and i686 targets.
+* Do not try to configure training tools if pkg-config is not present.
+* Installl tesseract configs files.
+
 Missing info, TBD.
 
 
 # Tesseract release notes Nov 30 2021 - V5.0.0
 
-* The 5.0.0 release is not API compatible with any 4.x release.
-* Reorganized Tesseract's source tree. All public headers are now placed in the `include/tesseract` directory.
-* Refactored the Autotools build. It now uses non-recursive (auto)make.
+* **Significant performance improvements**
+  * Support float (32 bit) for LSTM model training and text recognition. float is now the default instead of double (64 bit). 
+This means less RAM consumption and faster program execution.
+  * Try OCR on inverted line only if mean confidence is below 50% ([#3141](https://github.com/tesseract-ocr/tesseract/pull/3141)).
+  * SIMD
+    * Add manual dot product support for ARM NEON.
+    * Many other improvements.
+* **General enhancements**
+  * Add two new Leptonica based binarization methods: Adaptive Otsu and Sauvola. Use `tesseract --print-parameters | grep thresholding_` to see the relevant configurable parameters.
+  * Add new option `-l` for `combine_tessdata` to see the network spec for traineddata that was trained with the LSTM engine.
+  * In previous releases `pdf.ttf` was needed for the PDF rendering. In 5.0.0 this file is no longer needed. The pseudo font is now embedded in the code.
+  * lstmtraining: Interpret negative value for `--max_iterations` as epochs.
+* **Build system** 
+  * Refactor the Autotools build. It now uses non-recursive (auto)make.
+* **libtesseract API** 
+  * This release includes major changes to the public API. Version 5.0.0 is incompatible with 4.x. Developers using libtesseract need to adapt their code to these changes.
+  * Reduce the number of public headers. This includes the `genericvector.h` and the `strng.h` headers files.
+  * Remove some unnessary methods from the APi.
+* **Source code layout reorganization, files renaming**
+  * All public headers are now placed in the `include/tesseract` directory.
+  * Rename `tess_version.h.in` to `version.h.in`.
+  * Rename `platform.h` to `export.h`.
+  * Move `src/api/tesseractmain.cpp` to `src/tesseract.cpp`.
+  * `training` directory: Separate training tools from library.
 
 Missing more info, TBD.
 
