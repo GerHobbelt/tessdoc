@@ -48,16 +48,29 @@ Table of Contents
 * [Binary compatibility report for Tesseract: 4.0.0 vs 4.1.0](https://abi-laboratory.pro/index.php?view=objects_report&l=tesseract&v1=4.0.0&v2=4.1.0)
 * [Binary compatibility report for Tesseract: 3.05.02 vs 4.0.0](https://abi-laboratory.pro/index.php?view=objects_report&l=tesseract&v1=3.05.02&v2=4.0.0)
 
+# Tesseract release notes ??? ?? 202? - V5.3.0
+
+* PDF renderer: Ignore non-text blocks (fix issue 3957).
+* Fix issue 3940: Remove colormap before thresholding.
+* Training tools: Replace call of exit function by return statement in main function.
+* Fix double free in function vigorous_noise_removal (fix issue 3876).
+* Create to_win if needed in Textord::make_spline_rows (fix issue 3875).
+* Fix memory issues in ScrollView::MessageReceiver.
+* Catch potential nullptr in SVNetwork::SVNetwork.
+* Fix AMD64 detection with Autotools on FreeBSD.
+* Move `svpaint.cpp` from `src/viewer` to `src/`. Add rule for svpaint executable in Autotools.
+* Fix `tesseract.pc` generated from CMake to match Autotools.
+
 # Tesseract release notes Jul 06 2022 - V5.2.0
 
 * Add initial support for Intel AVX512F. This improves the performance for recognition with the 'best' models and for training.
 * C API: Add a function to init tesseract with traineddata from memory.
 * Add a new parameter `invert_threshold`. The default value is `0.7`. In previous 5.x versions, the inversion threshold was `0.5`, without a way to change this value by the user. The `tessedit_do_invert` paramerer is deprecated and will be removed in version 6.0. To completely disable textlines inversion, you can set `invert_threshold` value to `0.0`.
-* Fix for very large PDF files on 32 bit hosts.
 * Fix regression with UZN files.
 * Replace direct access to Leptonica internal data structures by function calls (this is necessary for compatibility with the next Leptonica release).
 * Replace `std::regex` by `std::string` functions (issue [#3830](https://github.com/tesseract-ocr/tesseract/issues/3830)).
-* Set `/Os` for some 32 bit MS compilers (issue [#3769](https://github.com/tesseract-ocr/tesseract/issues/3769)).
+* Fix for very large PDF files on 32 bit hosts.
+* Set `/Os` for AVX2 code when compiled with some versions of the 32-bit MSVC compiler (issue [#3769](https://github.com/tesseract-ocr/tesseract/issues/3769)).
 * Use compiled-in `TESSDATA_PREFIX` also on Windows.
 * C API: Fix calling `delete[]` for memory allocated by `malloc`.
 * Improve CI builds definitions.
