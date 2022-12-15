@@ -47,24 +47,20 @@ Table of Contents
 * [Binary compatibility report for Tesseract: 4.0.0 vs 4.1.0](https://abi-laboratory.pro/index.php?view=objects_report&l=tesseract&v1=4.0.0&v2=4.1.0)
 * [Binary compatibility report for Tesseract: 3.05.02 vs 4.0.0](https://abi-laboratory.pro/index.php?view=objects_report&l=tesseract&v1=3.05.02&v2=4.0.0)
 
-## Changes made since last release
-
-TBD 
-
-# Tesseract release notes ??? ?? 2022 - V5.2.0
-
-Not yet released.
+# Tesseract release notes Jul 06 2022 - V5.2.0
 
 * Add initial support for Intel AVX512F.
 * C API: Add a function to init tesseract with traineddata from memory.
-* Add a new parameter `invert_threshold`. The default value is `0.7`. In previous 5.x versions, the inversion threshold was `0.5`, without a way to change this value by the user. The `tessedit_do_invert` paramerer is deprecated and will be removed in version 6.0. To complely disable textlines invertion, you can set `invert_threshold`value to `0.0`.
+* Add a new parameter `invert_threshold`. The default value is `0.7`. In previous 5.x versions, the inversion threshold was `0.5`, without a way to change this value by the user. The `tessedit_do_invert` paramerer is deprecated and will be removed in version 6.0. To complely disable textlines inversion, you can set `invert_threshold` value to `0.0`.
 * Fix for very large PDF files on 32 bit hosts.
 * Fix regression with UZN files.
 * Replace direct access to Leptonica internal data structures by function calls (this is necessary for compatibility with the next Leptonica release).
-* Replace std::regex by std::string functions (issue [#3830](https://github.com/tesseract-ocr/tesseract/issues/3830)).
-* Set /Os for some 32 bit MS compilers (issue [#3769](https://github.com/tesseract-ocr/tesseract/issues/3769)).
-* Use compiled-in TESSDATA_PREFIX also on Windows.
-* C API: Fix calling delete[] for memory allocated by malloc.
+* Replace `std::regex` by `std::string` functions (issue [#3830](https://github.com/tesseract-ocr/tesseract/issues/3830)).
+* Set `/Os` for some 32 bit MS compilers (issue [#3769](https://github.com/tesseract-ocr/tesseract/issues/3769)).
+* Use compiled-in `TESSDATA_PREFIX` also on Windows.
+* C API: Fix calling `delete[]` for memory allocated by `malloc`.
+* Improve CI builds definitions.
+* Improve Autotools and CMake builds definitions.
 
 # Tesseract release notes Mar 01 2022 - V5.1.0
 
