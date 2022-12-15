@@ -47,11 +47,15 @@ Table of Contents
 
 ## Changes made since last release
 
+* Fix broken msys2 build with GCC 11.
+* Support up to 8 redirections when running OCR on a URL.
+* Catch nullptr in STATS::pile_count().
+* Remove NetworkIO::ZeroTimeStepGeneral(). This allows more inline code (optimization).
+* Update generator for lookup tables to use TFloat instead of double.
+* Fix clang compiler warnings in functions.h. The new code avoids some conversions between double and float, so it should also have a small positive effect on the performance.
 * Fix compiler warning [-Wsign-compare].
 * Fix compiler warnings caused by empty statements.
 * Fix some other compiler warnings.
-* Support up to 8 redirections when running OCR on a URL.
-* Fix broken msys2 build with GCC 11.
 * Add SPDX-License-Identifier to public include files.
 
 CMake build:
@@ -72,7 +76,8 @@ This means less RAM consumption and faster program execution.
     * Add manual dot product support for ARM NEON.
     * Many other improvements.
 * **General enhancements**
-  * Add two new Leptonica based binarization methods: Adaptive Otsu and Sauvola. Use `tesseract --print-parameters | grep thresholding_` to see the relevant configurable parameters.
+  * Add two new Leptonica based binarization methods: Adaptive Otsu and Sauvola. For users: Use `tesseract --print-parameters | grep thresholding_` to see the relevant configurable parameters.
+  * Disable music staff detection and removal because it interfere with the table detection feature. Change the default value of `pageseg_apply_music_mask` to `false`.
   * Add new command line option `--loglevel`.
   * Add new option `-l` for `combine_tessdata` to see the network spec for traineddata that was trained with the LSTM engine.
   * lstmtraining: Interpret negative value for `--max_iterations` as epochs.
