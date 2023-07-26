@@ -61,7 +61,7 @@ Improve the DebugDump output by slightly adjusting the format. By [@GerHobbelt](
 **Bugs fixes**
 
 * Fix FP division by zero (issue #3995). By [@stweil](https://github.com/stweil) in PR #3996.
-* Fix issue #4010. Enable some code blocks that were wrongly disabled when the legacy engine is disabled at compile time. By [@amitdo](https://github.com/amitdo) in PR #4041.
+* Fix issues #3997 and #4010. Enable some code blocks that were wrongly disabled when the legacy engine is disabled at compile time. By [@amitdo](https://github.com/amitdo) in PR #4041.
 * Fix build with GCC 13 by including `<cstdint>`. By [@kraj](https://github.com/kraj) in PR #4009.
 
 **CMake Build system**
@@ -74,19 +74,20 @@ Improve the DebugDump output by slightly adjusting the format. By [@GerHobbelt](
 
 _Dec 22 2022_
 
-LSTM trainIng: Extend the function BoxFileName to handle another image name extension, `.raw.png`. By [@bertsky](https://github.com/bertsky) in PR [#3962](https://github.com/tesseract-ocr/tesseract/pull/3962).
+LSTM trainIng: Extend the function `BoxFileName` to handle another image name extension, `.raw.png`. By [@bertsky](https://github.com/bertsky) in PR [#3962](https://github.com/tesseract-ocr/tesseract/pull/3962).
 
 **Bug fixes**
 
-* Fix the training tools for the legacy OCR engine (issue [#3925](https://github.com/tesseract-ocr/tesseract/issues/3925)). By [@stweil](https://github.com/stweil) in PR [#3970](https://github.com/tesseract-ocr/tesseract/pull/3970).
+* Fix the training tools for the legacy OCR engine (issue [#3925](https://github.com/tesseract-ocr/tesseract/issues/3925)). By [@stweil](https://github.com/stweil) in PRs: [#3970](https://github.com/tesseract-ocr/tesseract/pull/3970), [#3972](https://github.com/tesseract-ocr/tesseract/pull/3972), [#3977](https://github.com/tesseract-ocr/tesseract/pull/3977).
 * PDF renderer: Ignore non-text blocks (fix issue [#3957](https://github.com/tesseract-ocr/tesseract/issues/3957)). By [@amitdo](https://github.com/amitdo) in [#3959](https://github.com/tesseract-ocr/tesseract/pull/3959).
 * Remove colormap before thresholding (fix issue [#3940](https://github.com/tesseract-ocr/tesseract/issues/3940)). By [@zdenop](https://github.com/zdenop).
 * Fix a number of performance issues reported by Coverity Scan. By [@stweil](https://github.com/stweil) in PR [#3967](https://github.com/tesseract-ocr/tesseract/pull/3967).
-* Training tools: Replace call of `exit` function by return statement in `main` function.
-* Fix double free in function `vigorous_noise_removal` (fix issue 3876).
-* Create `to_win` if needed in `Textord::make_spline_rows` (fix issue 3875).
-* Fix memory issues in `ScrollView::MessageReceiver`.
-* Catch potential `nullptr` in `SVNetwork::SVNetwork`.
+* Training tools: Replace call of `exit` function by return statement in `main` function. By [@stweil](https://github.com/stweil) in PR [#3878](https://github.com/tesseract-ocr/tesseract/pull/3878).
+* Fix double free in function `vigorous_noise_removal` (fix issue [#3876](https://github.com/tesseract-ocr/tesseract/issues/3876)). By [@stweil](https://github.com/stweil) in commit [`ee34b100bf`](https://github.com/tesseract-ocr/tesseract/commit/ee34b100bf9b54).
+* Create `to_win` if needed in `Textord::make_spline_rows` (fix issue [#3875](https://github.com/tesseract-ocr/tesseract/issues/3875)). By [@stweil](https://github.com/stweil) in commit [`99d6717c10`](https://github.com/tesseract-ocr/tesseract/commit/99d6717c101308).
+* Fix memory issues in `ScrollView::MessageReceiver` (issue [#3869](https://github.com/tesseract-ocr/tesseract/issues/3869)). By [@p12tic](https://github.com/p12tic) in PR [#3872](https://github.com/tesseract-ocr/tesseract/pull/3872).
+* Catch potential `nullptr` in `SVNetwork::SVNetwork`. By [@stweil](https://github.com/stweil) in commit [`02e834000c`](https://github.com/tesseract-ocr/tesseract/commit/02e834000ce1d7).
+* Modernize function `ObjectCache::DeleteUnusedObjects` (fix issue with sanitizers. By [@stweil](https://github.com/stweil) in PR [#3978](https://github.com/tesseract-ocr/tesseract/pull/3978).
 
 **Build systems**
 
@@ -225,17 +226,17 @@ Changes in the Autotools build:
 
 _Dec 26 2019_
 
-* Added support for image or image list by URL. This feature is implemented using libcurl. Usage: `tesseract http://IMAGE_URL OUTPUT ...`
-* Added the parameter `document_title` to set the title in OCR output files (hOCR, PDF, ALTO).
-* Added the parameter `tessedit_do_invert`, which can speed up tesseract execution, when set to `false`.
-* Added the parameter `pageseg_apply_music_mask` to allow disabling the music mask.
-* Added ComposedBlock level to the ALTO renderer making it more in line with the hOCR renderer.
-* Training: Extend the function `BoxFileName` to handle more image names: `.bin.png` and `.nrm.png`. In PR [#2686](https://github.com/tesseract-ocr/tesseract/pull/2686).
-* Added an option to build tesseract with the sw build system and package manager. Building with cppan  is deprecated.
-* Fixed more locale handling issues found since 4.1.0.
-* Fixed a memory leak in text2image.
-* Fixed potential bugs discovered by running UndefinedBehaviorSanitizer.
-* Fixed many issues reported by Coverity Scan.
+* Add support for image or image list by URL. This feature is implemented using libcurl. Usage: `tesseract http://IMAGE_URL OUTPUT ...`
+* Add the parameter `document_title` to set the title in OCR output files (hOCR, PDF, ALTO).
+* Add the parameter `tessedit_do_invert`, which can speed up tesseract execution, when set to `false`.
+* Add the parameter `pageseg_apply_music_mask` to allow disabling the music mask.
+* Add ComposedBlock level to the ALTO renderer making it more in line with the hOCR renderer.
+* Training. Extend the function `BoxFileName` to handle more image names: `.bin.png` and `.nrm.png`. In PR [#2686](https://github.com/tesseract-ocr/tesseract/pull/2686).
+* Add an option to build tesseract with the sw build system and package manager. Building with cppan  is deprecated.
+* Fix more locale handling issues found since 4.1.0.
+* Fix a memory leak in text2image.
+* Fix potential bugs discovered by running UndefinedBehaviorSanitizer.
+* Fix many issues reported by Coverity Scan.
 * Code Cleanup and modernization.
 * Code optimization.
 * Many bug fixes.
@@ -245,17 +246,17 @@ _Dec 26 2019_
 _Jul 07 2019_
 
   * Backward compatible release with 4.0.0
-  * Added a new output option formatted in the [ALTO](https://en.wikipedia.org/wiki/ALTO_(XML)) standard. Command line usage: `tesseract imagename outputbase alto`. This output is **experimental** and might be changed a bit before the next release.
-  * Added new renders LSTMBox, WordStrBox to simplify training
-  * Added character boxes in hOCR output.
-  * Added Python training scripts (experimental) as alternative shell scripts.
-  * [Fixed locale handling issue](https://github.com/tesseract-ocr/tesseract/commit/331cc84d8d79). libtesseract now works with any locale.
+  * Add a new output option formatted in the [ALTO](https://en.wikipedia.org/wiki/ALTO_(XML)) standard. Command line usage: `tesseract imagename outputbase alto`. This output is **experimental** and might be changed a bit before the next release.
+  * Add new renders LSTMBox, WordStrBox to simplify training
+  * Add character boxes in hOCR output.
+  * Add Python training scripts (experimental) as alternative shell scripts.
+  * [Fix locale handling issue](https://github.com/tesseract-ocr/tesseract/commit/331cc84d8d79). libtesseract now works with any locale.
   * Better support AVX / AVX2 / SSE.
   * Disable OpenMP support by default. This was done in the the CMake build, but not in the Autotools build, where the OpenMP is still enabled by default (see e.g. #1171, #1081).
   * Fix for bounding box problem.
   * Implemented support for whitelist/blacklist in LSTM engine.
-  * Made user-words and user-patterns files work with the LSTM engine. [#2328](https://github.com/tesseract-ocr/tesseract/pull/2328)
-  * Improved CMake configuration.
+  * Make user-words and user-patterns files work with the LSTM engine. [#2328](https://github.com/tesseract-ocr/tesseract/pull/2328)
+  * Improve CMake configuration.
   * Code modernization and improvements.
   * A lot of bug fixes.
 
