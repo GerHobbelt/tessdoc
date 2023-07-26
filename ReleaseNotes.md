@@ -5,36 +5,37 @@ This page keeps the most up-to-date release notes.
 Table of Contents
 =================
 * [IN DEVELOPMENT](ReleaseNotes.md#in-development)
-* [V5.3.1](ReleaseNotes.md#tesseract-v531-release-notes), Apr 01 2023
-* [V5.3.0](ReleaseNotes.md#tesseract-release-notes-dec-22-2022---v530), Dec 22 2022
-* [V5.2.0](ReleaseNotes.md#tesseract-release-notes-jul-06-2022---v520), Jul 06 2022
-* [V5.1.0](ReleaseNotes.md#tesseract-release-notes-mar-01-2022---v510), Mar 01 2022
-* [V5.0.1](ReleaseNotes.md#tesseract-release-notes-jan-07-2022---v501), Jan 07 2022
-* [V5.0.0](ReleaseNotes.md#tesseract-release-notes-nov-30-2021---v500), Nov 30 2021
-* [Nov 15 2021 - V4.1.3](ReleaseNotes.md#tesseract-release-notes-nov-15-2021---v413)
-* [Nov 14 2021 - V4.1.2](ReleaseNotes.md#tesseract-release-notes-nov-14-2021---v412)
-* [Dec 26 2019 - V4.1.1](#tesseract-release-notes-dec-26-2019---v411)
-* [Jul 07 2019 - V4.1.0](#tesseract-release-notes-jul-07-2019---v410)
-* [Oct 29 2018 - V4.0.0](#tesseract-release-notes-oct-29-2018---v400)
-* [June 19 2018 - V3.05.02](#tesseract-release-notes-june-19-2018---v30502)
-* [June 1 2017 - V3.05.01](#tesseract-release-notes-june-1-2017---v30501)
-* [February 16 2017 - V3.05.00](#tesseract-release-notes-feb-16-2017---v30500)
-* [February 16 2016 - V3.04.01](#tesseract-release-notes-feb-16-2016---v30401)
-* [July 11 2015 - V3.04.00](#tesseract-release-notes-july-11-2015---v30400)
-* [February 4 2014 - V3.03(rc1)](#tesseract-release-notes-feb-4-2014---v303rc1)
-* [October 23 2012 - V3.02.02](#tesseract-release-notes-oct-23-2012---v30202)
-* [October 21 2011 - V3.01](#tesseract-release-notes-oct-21-2011---v301)
-* [September 30 2010 - V3.00](#tesseract-release-notes-sep-30-2010---v300)
-* [June 30 2009 - V2.04](#tesseract-release-notes-june-30-2009---v204)
-* [April 22 2008 - V2.03](#tesseract-release-notes-april-22-2008---v203)
-* [April 21 2008 - V2.02](#tesseract-release-notes-april-21-2008---v202)
-* [August 30 2007 - V2.01](#tesseract-release-notes-aug-30-2007---v201)
-* [July 18 2007 - V2.00](#tesseract-release-notes-jul-18-2007---v200)
-* [May 15 2007 - V1.04](#tesseract-release-notes-may-15-2007---v104)
-* [February 03 2007 - V1.03](#tesseract-release-notes-february-03-2007---v103)
-* [October 04 2006 - V1.02](#tesseract-release-notes-october-04-2006---v102)
-* [September 07 2006 - V1.01](#tesseract-release-notes-september-07-2006---v101)
-* [June 17 2006 - V1.00](#tesseract-release-notes-june-17-2006---v100)
+* [V5.3.1](#v531), Apr 01 2023
+* [V5.3.0](#v530), Dec 22 2022
+* [V5.2.0](#v520), Jul 06 2022
+* [V5.1.0](#v510), Mar 01 2022
+* [V5.0.1](#v501), Jan 07 2022
+* [V5.0.0](#v500), Nov 30 2021
+* [V4.1.3](#v413), Nov 15 2021
+* [V4.1.3](#v413), Nov 15 2021
+* [V4.1.2](#v412), Nov 14 2021
+* [V4.1.1](#v411), Dec 26 2019
+* [V4.1.0](#v410), Jul 07 2019
+* [V4.0.0](#v400), Oct 29 2018
+* [V3.05.02](#v30502), Jun 19 2018
+* [V3.05.01](#v30501), Jun 1 2017
+* [V3.05.00](#v30500), Feb 16 2017
+* [V3.04.01](#v30401), Feb 16 2016
+* [V3.04.00](#v30400), Jul 11 2015 
+* [V3.03(rc1)](#v303rc1), Feb 4 2014
+* [V3.02.02](#v30202), Oct 23 2012
+* [V3.01](#v301), Oct 21 2011
+* [V3.00](#v300), Sep 30 2010
+* [V2.04](#v204), Jun 30 2009
+* [V2.03](#v203), Apr 22 2008
+* [V2.02](#v202), Apr 21 2008
+* [V2.01](#v201), Aug 30 2007
+* [V2.00](#v200), Jul 18 2007
+* [V1.04](#v104), May 15 2007
+* [V1.03](#v103), Feb 03 2007
+* [V1.02](#v102), Oct 04 2006
+* [V1.01](#v101), Sep 07 2006
+* [V1.00](#v100), Jun 17 2006
 
 # IN DEVELOPMENT
 
@@ -51,7 +52,7 @@ Table of Contents
 * [Binary compatibility report for Tesseract: 3.05.02 vs 4.0.0](https://abi-laboratory.pro/index.php?view=objects_report&l=tesseract&v1=3.05.02&v2=4.0.0)
 
 
-# Tesseract V5.3.1 release notes
+# V5.3.1
 
 _Apr 01 2023_
 
@@ -69,7 +70,9 @@ Improve the DebugDump output by slightly adjusting the format. By [@GerHobbelt](
 * (MSVC debug) Fix wrong lib name in generated file `tesseract.pc`. By [@autoantwort](https://github.com/autoantwort) in PR #4008.
 * Fix libdir in generated file `tesseract.pc`. By [@ferdnyc](https://github.com/ferdnyc) in PR #4013.
 
-# Tesseract release notes Dec 22 2022 - V5.3.0
+# V5.3.0
+
+_Dec 22 2022_
 
 * Fix the training tools for the legacy OCR engine (issue 3925).
 * PDF renderer: Ignore non-text blocks (fix issue 3957).
@@ -84,7 +87,9 @@ Improve the DebugDump output by slightly adjusting the format. By [@GerHobbelt](
 * Move `svpaint.cpp` from `src/viewer` to `src/`. Add rule for svpaint executable in Autotools.
 * Fix `tesseract.pc` generated from CMake to match Autotools.
 
-# Tesseract release notes Jul 06 2022 - V5.2.0
+# V5.2.0
+
+_Jul 06 2022_
 
 * Add initial support for Intel AVX512F. This improves the performance for recognition with the 'best' models and for training.
 * C API: Add a function to init tesseract with traineddata from memory.
@@ -99,7 +104,9 @@ Improve the DebugDump output by slightly adjusting the format. By [@GerHobbelt](
 * Improve CI builds definitions.
 * Improve Autotools and CMake builds definitions.
 
-# Tesseract release notes Mar 01 2022 - V5.1.0
+# V5.1.0
+
+_Mar 01 2022_
 
 * Handle image and line separator regions in ALTO, hOCR and text output formats. 
 * Few other enhancements.
@@ -107,7 +114,9 @@ Improve the DebugDump output by slightly adjusting the format. By [@GerHobbelt](
 * Remove unused code.
 * Raise minimum required CMake version to 3.10.
 
-# Tesseract release notes Jan 07 2022 - V5.0.1
+# V5.0.1
+
+_Jan 07 2022_
 
 * Fix broken msys2 build with GCC 11.
 * Support up to 8 redirections when running OCR on a URL.
@@ -126,7 +135,9 @@ CMake build:
 * Do not try to configure training tools if pkg-config is not present.
 * Install tesseract configs files.
 
-# Tesseract release notes Nov 30 2021 - V5.0.0
+# V5.0.0
+
+_Nov 30 2021_
 
 * **Significant performance improvements**
   * Support `float` (32 bit) for LSTM model training and text recognition. `float` is now the default instead of `double` (64 bit). 
@@ -179,11 +190,15 @@ This means less RAM consumption and faster program execution.
 * **Updated requirements**
   * For building Tesseract from source code, a compiler with good C++17 support is required.
 
-# Tesseract release notes Nov 15 2021 - V4.1.3
+# V4.1.3
+
+_Nov 15 2021_
 
 Fix broken autotools build.
 
-# Tesseract release notes Nov 14 2021 - V4.1.2
+# V4.1.2
+
+_Nov 14 2021_
 
 * Move `RowAttributes()` from `LTRResultIterator` to `PageIterator`.
 * Change the maximum allowed width of image to train on from `2560` to `4096`.
@@ -199,7 +214,10 @@ Changes in the Autotools build:
 * Don't use compiler flags `-march=native -mtune=native` in autoconf builds.
 * Make automake builds less noisy by default.
 
-# Tesseract release notes Dec 26 2019 - V4.1.1
+# V4.1.1
+
+_Dec 26 2019_
+
 * Added support for image or image list by URL. This feature is implemented using libcurl. Usage: `tesseract http://IMAGE_URL OUTPUT ...`
 * Added the parameter `document_title` to set the title in OCR output files (hOCR, PDF, ALTO).
 * Added the parameter `tessedit_do_invert`, which can speed up tesseract execution, when set to `false`.
@@ -214,7 +232,10 @@ Changes in the Autotools build:
 * Code optimization.
 * Many bug fixes.
 
-# Tesseract release notes Jul 07 2019 - V4.1.0
+# V4.1.0
+
+_Jul 07 2019_
+
   * Backward compatible release with 4.0.0
   * Added a new output option formatted in the [ALTO](https://en.wikipedia.org/wiki/ALTO_(XML)) standard. Command line usage: `tesseract imagename outputbase alto`. This output is **experimental** and might be changed a bit before the next release.
   * Added new renders LSTMBox, WordStrBox to simplify training
@@ -230,7 +251,10 @@ Changes in the Autotools build:
   * Code modernization and improvements.
   * A lot of bug fixes.
 
-# Tesseract release notes Oct 29 2018 - V4.0.0
+# V4.0.0
+
+_Oct 29 2018_
+
   * **New OCR engine**
     * Added a new OCR engine that uses neural network system based on LSTMs, with major accuracy gains.
     * This includes new training tools for the LSTM OCR engine. A new model can be trained from scratch or by fine tuning an existing model.
@@ -277,10 +301,16 @@ from hocr, pdf, and tsv config files. The user should explicitly use `--psm 1` i
     * The new LSTM engine still does not support all features from the old legacy engine (see [missing features](Planning.md#features-from-30x-which-are-missing-for-lstm)).
     * Tesseract now requires the so called "C" locale. This has mainly implications when Tesseract is used as a library from programming languages like Java or Python. The _locale_ stands for several settings which depend on a language (or language variant) or country. Some of those setting determine the classification of symbols (for example "Is this character a blank (space) character?") or the way how numbers are printed (for example "3.141" or "3,141"). The current Tesseract code implicitly expects some fixed settings, otherwise it fails. Therefore the code fails right at the beginning with an assertion if it cannot be sure that the settings work. This is not a problem with C or C++ programs which by default get a "C" locale with the right settings. All other use cases must currently make sure that they switch to the "C" locale before running Tesseract code. [**Fixed**](https://github.com/tesseract-ocr/tesseract/commit/331cc84d8d79) in version 4.1.0.
 
-# Tesseract release notes June 19 2018 - V3.05.02
+# V3.05.02
+
+_Jun 19 2018_
+
 This release fixed a few bugs, backported from 4.0.0.
 
-# Tesseract release notes June 1 2017 - V3.05.01
+# V3.05.01
+
+_Jun 1 2017_
+
   * Added an option to render only the invisible text layer (without the full
 input image) for PDF output.
   * Made some optimizations to GenericVector.
@@ -290,7 +320,10 @@ input image) for PDF output.
   * OpenCL - Fixed some issues. Removed a large part of the code.
   * Removed dead code.
 
-# Tesseract release notes Feb 16 2017 - V3.05.00
+# V3.05.00
+
+_Feb 16 2017_
+
   * Tesseract now requires Leptonica 1.74.0 or a higher version.
   * Made some fine tuning to the hOCR output.
   * Added TSV as another optional output format.
@@ -312,7 +345,10 @@ input image) for PDF output.
   * Added option to build Tesseract with CMake build system.
   * Implemented [CPPAN](https://github.com/cppan) support for easy Windows building.
 
-# Tesseract release notes Feb 16 2016 - V3.04.01
+# V3.04.01
+
+_Feb 16 2016_
+
   * Added OSD renderer for psm 0. Works for single page and multi-page images.
   * Improved tesstrain.sh script.
   * Simplify build and run of ScrollView.
@@ -321,7 +357,10 @@ input image) for PDF output.
   * Added option to build Tesseract without Cube OCR engine (-DNO_CUBE_BUILD).
   * The project uses Travis CI and AppVeyor Continuous Integration services.
 
-# Tesseract release notes July 11 2015 - V3.04.00
+#  V3.04.00
+
+_Jul 11 2015_
+
   * Tesseract development is now done with Git and hosted at github.com
 (Previously we used Subversion as a VCS and code.google.com for hosting).
   * Tesseract now requires Leptonica 1.71 or a higher version.
@@ -355,7 +394,10 @@ command line option.
   * Enabled streaming input and output of multi-page documents.
   * Many bug fixes.
 
-# Tesseract release notes Feb 4 2014 - V3.03(rc1)
+#  V3.03(rc1)
+
+_Feb 4 2014_
+
   * Tesseract now requires Leptonica 1.70 or a higher version.
   * Added OpenCL support (experimental).
   * Added new training tool text2image to generate box/tif file pairs from text and truetype fonts.
@@ -372,7 +414,10 @@ command line option.
   * Many bug fixes.
   * More training source data included.
 
-# Tesseract release notes Oct 23 2012 - V3.02.02
+# V3.02.02
+
+_Oct 23 2012_
+
   * Tesseract now requires Leptonica 1.69 or a higher version.
   * Moved ResultIterator/PageIterator to ccmain.
   * Added Right-to-left/Bidi capability in the output iterators for Hebrew/Arabic.
@@ -406,7 +451,11 @@ command line option.
   * Fixed the way in which the chopper finds chops and messes with the outline while it does so.
   * Many other fixes.
 
-# Tesseract release notes Oct 21 2011 - V3.01
+# V3.01
+
+
+_Oct 21 2011_
+
   * Thread-safety! Moved all critical globals and statics to members of the appropriate class. Tesseract is now thread-safe (multiple instances can be used in parallel in multiple threads.) with the minor exception that some control parameters are still global and affect all threads.
   * Added `Cube`, a new **experimental** recognizer for Arabic and Hindi. Cube can also be used in combination with normal Tesseract for a few other languages with an small improvement in accuracy at the cost of much lower speed. **There is no training module for Cube.**
   * `OcrEngineMode` in `Init` replaces `AccuracyVSpeed` to control cube.
@@ -430,8 +479,10 @@ command line option.
   * Special treatments for Hindi.
   * Support for build in VS2010 with Microsoft Windows SDK for Windows 7 (thanks to Michael Lutz)
 
+# V3.00
 
-# Tesseract release notes Sep 30 2010 - V3.00
+_Sep 30 2010_
+
   * Preparations for thread safety:
     * Changed TessBaseAPI methods to be non-static
     * Created a class hierarchy for the directories to hold instance data, and began moving code into the classes.
@@ -446,7 +497,10 @@ command line option.
   * Many more languages added.
   * Doxygenation of most of the function header comments.
 
-# Tesseract release notes June 30 2009 - V2.04
+# V2.04
+
+_Jun 30 2009_
+
   * Integrated patches for portability and to remove some of the "access" macros.
   * Removed dependence on lua from the viewer making it a **lot** faster. Also the viewer now compiles and works (on Linux.) Also works on windows via a pre-built ScrollView.jar.
   * Fixed the following issues: 1, 63, 67, 71, 76, 79, 81, 82, 84, 106, 108, 111, 112, 128, 129, 130, 133, 135, 142, 143, 145, 146, 147, 153, 154, 160, 165, 169, 170, 175, 177, 187, 192, 195, 199, 201, 205, 209.
@@ -454,13 +508,19 @@ command line option.
   * This may also be the last version to compile without Leptonica!
   * Windows version now outputs to stderr by default, fixing a lot of the problems with lack of visible meaningful error messages.
 
-# Tesseract release notes April 22 2008 - V2.03
+# V2.03
+
+_Apr 22 2008_
+
 2.02 was unrunnable, due to a last-minute "simple" change.
 2.03 fixes the problem.
 It also adds an include check for leptonica
 to make it more usable.
 
-# Tesseract release notes April 21 2008 - V2.02
+# V2.02
+
+_Apr 21 2008_
+
   * Improvements to clustering, training and classifier.
   * Major internationalization improvements for large-character-set languages, eg Kannada.
   * Removed some compiler warnings.
@@ -475,7 +535,10 @@ to make it more usable.
   * Portability fixes for Windows for new code.
   * Updates to autoconf system for new code.
 
-# Tesseract release notes Aug 30, 2007 - V2.01
+# V2.01
+
+_Aug 30 2007_
+
 (See also release notes for 2.00 below for usage information)
 
 No major functionality change. Just a bunch of bug fixes.
@@ -494,7 +557,10 @@ There are new data files for German Fraktur (deu-f) and Brazillian Portuguese (p
 
 **STOP PRESS** There is a minor bug in unicharset\_extractor. Since this is only applicable to training, the main tarball is fine unless you need to run training, in which case, overwrite your unicharset\_extractor.cpp and unicharset\_extractor.exe with the ones in tesseract-2.01.patch1.tar.gz.
 
-# Tesseract release notes Jul 18, 2007 - V2.00
+# V2.00
+
+_Jul 18 2007_
+
 (See also release notes for 1.04 below for additional usage information)
 
 First release of the International version.
@@ -529,7 +595,9 @@ List of changes in this release:
 **Warning:** Tesseract 2.00 has undergone more compatibility testing than any previous version. There have even been fixes to make the accuracy more consistent across platforms. Having said that, there have been many changes to the code, and portability may have been broken, so 64 bit and Mac platforms may not work or even build as well as before.
 
 
-# Tesseract release notes May 15, 2007 - V1.04
+# V1.04
+
+_May 15 2007_
 
 Tesseract development is now done with Subversion and hosted at code.google.com (Previously we used CVS as a VCS and sourceforge.net for hosting).
 
@@ -586,7 +654,10 @@ Apologies in advance to non-windows users for bloating the distribution with
 windows executables. This will probably get fixed in the next release with
 the multi-language capability, since that will also bloat the distribution.
 
-# Tesseract release notes February 03, 2007 - V1.03
+# V1.03
+
+_Feb 03 2007_
+
   * Added mftraining and cntraining.
   * Added baseapi with adaptive thresholding for grey and color.
   * Fixed many memory leaks.
@@ -595,20 +666,29 @@ the multi-language capability, since that will also bloat the distribution.
   * Incorporated several patches, including 64-bit builds, Mac builds.
   * Minor accuracy improvements.
 
-# Tesseract release notes October 04, 2006 - V1.02
+# V1.02
+
+_Oct 04 2006_
+
   * Removed dependency on Aspirin.
   * Fixed a few missing Apache license headers.
   * Removed $log.
 
 
-# Tesseract release notes September 07, 2006 - V1.01
+# V1.01
+
+_Sepr 07 2006_
+
   * Added mfcpch.cpp and getopt.cpp for VC++.
   * Fixed problem with greyscale images and no libtiff.
   * Stopped debug window from being used for the usage output.
   * Fixed load of inttemp for big-endian architectures.
   * Fixed some Mac compilation issues.
 
-# Tesseract release notes June 17, 2006 - V1.00
+# V1.00
+
+_Jun 17 2006_
+
 First **open source** version of Tesseract!
 
 Hosted at sourceforge.net.
