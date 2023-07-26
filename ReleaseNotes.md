@@ -74,17 +74,24 @@ Improve the DebugDump output by slightly adjusting the format. By [@GerHobbelt](
 
 _Dec 22 2022_
 
-* Fix the training tools for the legacy OCR engine (issue 3925).
-* PDF renderer: Ignore non-text blocks (fix issue 3957).
-* Remove colormap before thresholding (fix issue 3940).
-* Fix a number of performance issues reported by Coverity Scan.
-* Training tools: Replace call of exit function by return statement in main function.
-* Fix double free in function vigorous_noise_removal (fix issue 3876).
-* Create to_win if needed in Textord::make_spline_rows (fix issue 3875).
-* Fix memory issues in ScrollView::MessageReceiver.
-* Catch potential nullptr in SVNetwork::SVNetwork.
-* Fix AMD64 detection with Autotools on FreeBSD.
+LSTM trainIng: Extend the function BoxFileName to handle another image name extension, `.raw.png`. By [@bertsky](https://github.com/bertsky) in PR [#3962](https://github.com/tesseract-ocr/tesseract/pull/3962).
+
+**Bug fixes**
+
+* Fix the training tools for the legacy OCR engine (issue [#3925](https://github.com/tesseract-ocr/tesseract/issues/3925)). By [@stweil](https://github.com/stweil) in PR [#3970](https://github.com/tesseract-ocr/tesseract/pull/3970).
+* PDF renderer: Ignore non-text blocks (fix issue [#3957](https://github.com/tesseract-ocr/tesseract/issues/3957)). By [@amitdo](https://github.com/amitdo) in [#3959](https://github.com/tesseract-ocr/tesseract/pull/3959).
+* Remove colormap before thresholding (fix issue [#3940](https://github.com/tesseract-ocr/tesseract/issues/3940)). By [@zdenop](https://github.com/zdenop).
+* Fix a number of performance issues reported by Coverity Scan. By [@stweil](https://github.com/stweil) in PR [#3967](https://github.com/tesseract-ocr/tesseract/pull/3967).
+* Training tools: Replace call of `exit` function by return statement in `main` function.
+* Fix double free in function `vigorous_noise_removal` (fix issue 3876).
+* Create `to_win` if needed in `Textord::make_spline_rows` (fix issue 3875).
+* Fix memory issues in `ScrollView::MessageReceiver`.
+* Catch potential `nullptr` in `SVNetwork::SVNetwork`.
+
+**Build systems**
+
 * Move `svpaint.cpp` from `src/viewer` to `src/`. Add rule for svpaint executable in Autotools.
+* Fix AMD64 detection with Autotools on FreeBSD.
 * Fix `tesseract.pc` generated from CMake to match Autotools.
 
 # V5.2.0
@@ -223,6 +230,7 @@ _Dec 26 2019_
 * Added the parameter `tessedit_do_invert`, which can speed up tesseract execution, when set to `false`.
 * Added the parameter `pageseg_apply_music_mask` to allow disabling the music mask.
 * Added ComposedBlock level to the ALTO renderer making it more in line with the hOCR renderer.
+* Training: Extend the function `BoxFileName` to handle more image names: `.bin.png` and `.nrm.png`. In PR [#2686](https://github.com/tesseract-ocr/tesseract/pull/2686).
 * Added an option to build tesseract with the sw build system and package manager. Building with cppan  is deprecated.
 * Fixed more locale handling issues found since 4.1.0.
 * Fixed a memory leak in text2image.
