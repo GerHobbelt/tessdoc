@@ -5,11 +5,12 @@ This page keeps the most up-to-date release notes.
 Table of Contents
 =================
 * [IN DEVELOPMENT](ReleaseNotes.md#in-development)
-* [Dec 22 2022 - V5.3.0](ReleaseNotes.md#tesseract-release-notes-dec-22-2022---v530)
-* [Jul 06 2022 - V5.2.0](ReleaseNotes.md#tesseract-release-notes-jul-06-2022---v520)
-* [Mar 01 2022 - V5.1.0](ReleaseNotes.md#tesseract-release-notes-mar-01-2022---v510)
-* [Jan 07 2022 - V5.0.1](ReleaseNotes.md#tesseract-release-notes-jan-07-2022---v501)
-* [Nov 30 2021 - V5.0.0](ReleaseNotes.md#tesseract-release-notes-nov-30-2021---v500)
+* [V5.3.1](ReleaseNotes.md#tesseract-v531-release-notes), Apr 01 2023
+* [V5.3.0](ReleaseNotes.md#tesseract-release-notes-dec-22-2022---v530), Dec 22 2022
+* [V5.2.0](ReleaseNotes.md#tesseract-release-notes-jul-06-2022---v520), Jul 06 2022
+* [V5.1.0](ReleaseNotes.md#tesseract-release-notes-mar-01-2022---v510), Mar 01 2022
+* [V5.0.1](ReleaseNotes.md#tesseract-release-notes-jan-07-2022---v501), Jan 07 2022
+* [V5.0.0](ReleaseNotes.md#tesseract-release-notes-nov-30-2021---v500), Nov 30 2021
 * [Nov 15 2021 - V4.1.3](ReleaseNotes.md#tesseract-release-notes-nov-15-2021---v413)
 * [Nov 14 2021 - V4.1.2](ReleaseNotes.md#tesseract-release-notes-nov-14-2021---v412)
 * [Dec 26 2019 - V4.1.1](#tesseract-release-notes-dec-26-2019---v411)
@@ -50,23 +51,23 @@ Table of Contents
 * [Binary compatibility report for Tesseract: 3.05.02 vs 4.0.0](https://abi-laboratory.pro/index.php?view=objects_report&l=tesseract&v1=3.05.02&v2=4.0.0)
 
 
-# Tesseract V5.3.1 Release notes
+# Tesseract V5.3.1 release notes
 
-~~Apr 01 2022~~
+_Apr 01 2023_
 
-Improve the DebugDump output by slightly adjusting the format. by [@GerHobbelt](https://github.com/) in #4022.
+Improve the DebugDump output by slightly adjusting the format. By [@GerHobbelt](https://github.com/GerHobbelt) in PR #4022.
 
 **Bugs fixes**
 
-* Fix FP division by zero (issue #3995). By [@stweil](https://github.com/) in PR #3996.
+* Fix FP division by zero (issue #3995). By [@stweil](https://github.com/stweil) in PR #3996.
 * Fix issue #4010. Enable some code blocks that were wrongly disabled when the legacy engine is disabled at compile time. By [@amitdo](https://github.com/amitdo) in PR #4041.
 * Fix build with GCC 13 by including `<cstdint>`. By [@kraj](https://github.com/kraj) in PR #4009.
 
 **CMake Build system**
 
 * Fix linkage of icu and pango. By [@autoantwort](https://github.com/autoantwort) in PR #4006.
-* (MSVC debug) Fix wrong lib name in generated pkgconfig file. By [@autoantwort](https://github.com/autoantwort) in PR #4008.
-* Fix libdir in Generated tesseract.pc. By [@ferdnyc](https://github.com/ferdnyc) in PR #4013.
+* (MSVC debug) Fix wrong lib name in generated file `tesseract.pc`. By [@autoantwort](https://github.com/autoantwort) in PR #4008.
+* Fix libdir in generated file `tesseract.pc`. By [@ferdnyc](https://github.com/ferdnyc) in PR #4013.
 
 # Tesseract release notes Dec 22 2022 - V5.3.0
 
