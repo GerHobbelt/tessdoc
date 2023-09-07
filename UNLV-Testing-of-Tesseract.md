@@ -1,27 +1,27 @@
 # How to run UNLV tests on Tesseract
 
-# Introduction
+## Introduction
 
 Tesseract 2.0+ provided scripts that make it possible to run some of the UNLV tests published in the Fourth Annual Test of OCR Accuracy.
 See [AT-1995.pdf](https://github.com/tesseract-ocr/docs/blob/main/AT-1995.pdf) (originally available at http://www.isri.unlv.edu/). The main purpose of providing these test scripts is to enable Tesseract users to verify that their installation is correct, and that no architecture-specific problems are causing bad recognition accuracy. It also serves as a benchmark to demonstrate accuracy improvements of each version. Developers working on Tesseract may find the benchmarking tools useful for measuring experimental new modules.
 
 Note that **some** architecture-specific variation is bound to occur. Most of these should be caused by varying treatment and optimization of floating-point arithmetic between compilers. It is also possible of course that there are memory initialization errors that show up as differences between architectures, but we claim to have found most of these already in the unicodeization process.
 
-# Caveat
+## Caveat
 
 The UNLV images are G4 compressed, so you must build Tesseract with TIFF support, but all recent versions include libtiff by default. 
 
 Windows users also have to have some unix shell script capability, perhaps via cygwin or equivalent.
 
-# Images
+## Images
 
 The current scripts only cover tests of the 3B test sets (ie 300 dpi bitonal). The adaptive thresholding in the open-source Tesseract is not the same as in the original as the original adaptive thresholding was not included in the open source release, so the 8 bit grey image tests would not compare correctly, and the other resolutions, while interesting, do not really serve a useful regression testing purpose.
 
-# Running the tests
+## Running the tests
 
 See [README file for UNLV tests](https://github.com/tesseract-ocr/test/blob/main/unlvtests/README.md) for the current instructions on how to run the tests for Tesseract 4.
 
-# Example Results
+## Example Results
 
 Here are some of the results of the 1995 test, taken from [AT-1995.pdf](https://github.com/tesseract-ocr/docs/blob/main/AT-1995.pdf) and reformatted to match the output of the Tesseract test tools:
 
@@ -88,6 +88,8 @@ vc6     Total   58610   -       -8.11%  15994   -       0.16%   12586   -       
 
 Future work may be directed at making these discrepancies smaller, if not eliminating them completely, on the grounds that where there is variation, there is room for improvement...
 
+
+
 ### Results for more recent versions of Tesseract [by Tom Morris](https://groups.google.com/forum/#!searchin/tesseract-dev/bus.3B%7Csort:date/tesseract-dev/LErriuT-sck/B5PR0QaCGwAJ)
 
 All compiled with Apple C compiler Apple LLVM version 7.0.2 (clang-700.1.81) with target x86_64-apple-darwin14.3.0.
@@ -141,6 +143,10 @@ Testid  Testset Character               Word                    Non-stopword
 2.04	news.3B	7655	98.44%	19.01%	1730	97.94%	-11.10%	1208	97.54	-19.57%
 2.04	Total	58159	-	-8.82%	15732	-	-1.48%	12384	-	-6.30%
 ```
+
+
+
+
 
 # How to use OCR Evaluation Tools by Nick White
 

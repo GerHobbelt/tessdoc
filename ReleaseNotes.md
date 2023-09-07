@@ -55,38 +55,38 @@ Table of Contents
 
 _Apr 01 2023_
 
-Improve the DebugDump output by slightly adjusting the format. By [@GerHobbelt](https://github.com/GerHobbelt) in PR #4022.
+Improve the DebugDump output by slightly adjusting the format. By [\@GerHobbelt](https://github.com/GerHobbelt) in PR #4022.
 
 **Bug fixes**
 
-* Fix FP division by zero (issue #3995). By [@stweil](https://github.com/stweil) in PR #3996.
-* Fix issues #3997 and #4010. Enable some code blocks that were wrongly disabled when the legacy engine is disabled at compile time. By [@amitdo](https://github.com/amitdo) in PR #4041.
-* Fix build with GCC 13 by including `<cstdint>`. By [@kraj](https://github.com/kraj) in PR #4009.
+* Fix FP division by zero (issue #3995). By [\@stweil](https://github.com/stweil) in PR #3996.
+* Fix issues #3997 and #4010. Enable some code blocks that were wrongly disabled when the legacy engine is disabled at compile time. By [\@amitdo](https://github.com/amitdo) in PR #4041.
+* Fix build with GCC 13 by including `<cstdint>`. By [\@kraj](https://github.com/kraj) in PR #4009.
 
 **CMake Build system**
 
-* Fix linkage of icu and pango. By [@autoantwort](https://github.com/autoantwort) in PR #4006.
-* (MSVC debug) Fix wrong lib name in generated file `tesseract.pc`. By [@autoantwort](https://github.com/autoantwort) in PR #4008.
-* Fix libdir in generated file `tesseract.pc`. By [@ferdnyc](https://github.com/ferdnyc) in PR #4013.
+* Fix linkage of icu and pango. By [\@autoantwort](https://github.com/autoantwort) in PR #4006.
+* (MSVC debug) Fix wrong lib name in generated file `tesseract.pc`. By [\@autoantwort](https://github.com/autoantwort) in PR #4008.
+* Fix libdir in generated file `tesseract.pc`. By [\@ferdnyc](https://github.com/ferdnyc) in PR #4013.
 
 # V5.3.0
 
 _Dec 22 2022_
 
-LSTM trainIng: Extend the function `BoxFileName` to handle another image name extension, `.raw.png`. By [@bertsky](https://github.com/bertsky) in PR [#3962](https://github.com/tesseract-ocr/tesseract/pull/3962).
+LSTM trainIng: Extend the function `BoxFileName` to handle another image name extension, `.raw.png`. By [\@bertsky](https://github.com/bertsky) in PR [#3962](https://github.com/tesseract-ocr/tesseract/pull/3962).
 
 **Bug fixes**
 
-* Fix the training tools for the legacy OCR engine (issue [#3925](https://github.com/tesseract-ocr/tesseract/issues/3925)). By [@stweil](https://github.com/stweil) in PRs: [#3970](https://github.com/tesseract-ocr/tesseract/pull/3970), [#3972](https://github.com/tesseract-ocr/tesseract/pull/3972), [#3977](https://github.com/tesseract-ocr/tesseract/pull/3977).
-* PDF renderer: Ignore non-text blocks (fix issue [#3957](https://github.com/tesseract-ocr/tesseract/issues/3957)). By [@amitdo](https://github.com/amitdo) in [#3959](https://github.com/tesseract-ocr/tesseract/pull/3959).
-* Remove colormap before thresholding (fix issue [#3940](https://github.com/tesseract-ocr/tesseract/issues/3940)). By [@zdenop](https://github.com/zdenop).
-* Fix a number of performance issues reported by Coverity Scan. By [@stweil](https://github.com/stweil) in PR [#3967](https://github.com/tesseract-ocr/tesseract/pull/3967).
-* Training tools: Replace call of `exit` function by return statement in `main` function. By [@stweil](https://github.com/stweil) in PR [#3878](https://github.com/tesseract-ocr/tesseract/pull/3878).
-* Fix double free in function `vigorous_noise_removal` (issue [#3876](https://github.com/tesseract-ocr/tesseract/issues/3876)). By [@stweil](https://github.com/stweil) in commit [`ee34b100bf`](https://github.com/tesseract-ocr/tesseract/commit/ee34b100bf9b54).
-* Create `to_win` if needed in `Textord::make_spline_rows` (fix issue [#3875](https://github.com/tesseract-ocr/tesseract/issues/3875)). By [@stweil](https://github.com/stweil) in commit [`99d6717c10`](https://github.com/tesseract-ocr/tesseract/commit/99d6717c101308).
-* Fix memory issues in `ScrollView::MessageReceiver` (issue [#3869](https://github.com/tesseract-ocr/tesseract/issues/3869)). By [@p12tic](https://github.com/p12tic) in PR [#3872](https://github.com/tesseract-ocr/tesseract/pull/3872).
-* Catch potential `nullptr` in `SVNetwork::SVNetwork`. By [@stweil](https://github.com/stweil) in commit [`02e834000c`](https://github.com/tesseract-ocr/tesseract/commit/02e834000ce1d7).
-* Modernize function `ObjectCache::DeleteUnusedObjects` (fix issue with sanitizers). By [@stweil](https://github.com/stweil) in PR [#3978](https://github.com/tesseract-ocr/tesseract/pull/3978).
+* Fix the training tools for the legacy OCR engine (issue [#3925](https://github.com/tesseract-ocr/tesseract/issues/3925)). By [\@stweil](https://github.com/stweil) in PRs: [#3970](https://github.com/tesseract-ocr/tesseract/pull/3970), [#3972](https://github.com/tesseract-ocr/tesseract/pull/3972), [#3977](https://github.com/tesseract-ocr/tesseract/pull/3977).
+* PDF renderer: Ignore non-text blocks (fix issue [#3957](https://github.com/tesseract-ocr/tesseract/issues/3957)). By [\@amitdo](https://github.com/amitdo) in [#3959](https://github.com/tesseract-ocr/tesseract/pull/3959).
+* Remove colormap before thresholding (fix issue [#3940](https://github.com/tesseract-ocr/tesseract/issues/3940)). By [\@zdenop](https://github.com/zdenop).
+* Fix a number of performance issues reported by Coverity Scan. By [\@stweil](https://github.com/stweil) in PR [#3967](https://github.com/tesseract-ocr/tesseract/pull/3967).
+* Training tools: Replace call of `exit` function by return statement in `main` function. By [\@stweil](https://github.com/stweil) in PR [#3878](https://github.com/tesseract-ocr/tesseract/pull/3878).
+* Fix double free in function `vigorous_noise_removal` (issue [#3876](https://github.com/tesseract-ocr/tesseract/issues/3876)). By [\@stweil](https://github.com/stweil) in commit [`ee34b100bf`](https://github.com/tesseract-ocr/tesseract/commit/ee34b100bf9b54).
+* Create `to_win` if needed in `Textord::make_spline_rows` (fix issue [#3875](https://github.com/tesseract-ocr/tesseract/issues/3875)). By [\@stweil](https://github.com/stweil) in commit [`99d6717c10`](https://github.com/tesseract-ocr/tesseract/commit/99d6717c101308).
+* Fix memory issues in `ScrollView::MessageReceiver` (issue [#3869](https://github.com/tesseract-ocr/tesseract/issues/3869)). By [\@p12tic](https://github.com/p12tic) in PR [#3872](https://github.com/tesseract-ocr/tesseract/pull/3872).
+* Catch potential `nullptr` in `SVNetwork::SVNetwork`. By [\@stweil](https://github.com/stweil) in commit [`02e834000c`](https://github.com/tesseract-ocr/tesseract/commit/02e834000ce1d7).
+* Modernize function `ObjectCache::DeleteUnusedObjects` (fix issue with sanitizers). By [\@stweil](https://github.com/stweil) in PR [#3978](https://github.com/tesseract-ocr/tesseract/pull/3978).
 
 **Build systems**
 

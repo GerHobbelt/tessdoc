@@ -363,7 +363,6 @@ At iteration 718/10700/10700, Mean rms=0.111000%, delta=0.006000%, BCER train=0.
 At iteration 718/10800/10800, Mean rms=0.108000%, delta=0.002000%, BCER train=0.007000%, BWER train=0.052000%, skip ratio=0.000000%,  New best BCER = 0.007000 wrote best model:data/engRupee/checkpoints/engRupee_0.007000_718_10800.checkpoint wrote checkpoint.
 
 Finished! Selected model with minimal training error rate (BCER) = 0.007
-
 ```
 
 With `--debug_interval -1`, the trainer outputs verbose debug text for every
@@ -402,8 +401,8 @@ In the special case of
 continuing to the next iteration, but for all others it just continues and draws
 information at the frequency requested.
 
-**NOTE that to use --debug_interval > 0 you must build
-[ScrollView.jar](https://github.com/tesseract-ocr/tessdoc/blob/main/ViewerDebugging) as well as the other training tools.** See
+**NOTE that to use `--debug_interval > 0` you must build
+[ScrollView.jar](../ViewerDebugging.md) as well as the other training tools.** See
 [Building the Training Tools](#building-the-training-tools)
 
 The visual debug information includes:
@@ -554,4 +553,4 @@ If you notice that your model is misbehaving, for example by:
 * Adding `Space` where it should not do that.
 * etc...
 
-[Then read the hallucination topic.](https://github.com/tesseract-ocr/tessdoc/blob/bc73ab3c1ed7846a48ef2630a053017de3ec07c3/tess4/The-Hallucination-Effect.md)
+[Then read the hallucination topic.](../tess4/The-Hallucination-Effect.md)

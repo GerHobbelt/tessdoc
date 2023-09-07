@@ -18,7 +18,7 @@ The following components are required to run the viewer:
 All these jar files need to go in a single directory. Tesseract learns the location either through the environment variable SCROLLVIEW\_PATH or a compiler define of the same name.
 
 Alternative download link by Dmitri Silaev is available from http://www.4shared.com/zip/FnP8RSu0/tess_debug_3_02.html.
-Copy piccolo-1.2.jar, piccolox-1.2.jar and ScrollView.jar from the downloaded package to C:\Tesseract-OCR\java.
+Copy `piccolo-1.2.jar`, `piccolox-1.2.jar` and `ScrollView.jar` from the downloaded package to `C:\Tesseract-OCR\java`.
 
 **On Linux:**
 
@@ -29,7 +29,7 @@ Copy piccolo-1.2.jar, piccolox-1.2.jar and ScrollView.jar from the downloaded pa
 
 **On Windows:**
 
-The build process for building ScrollView.jar is not defined. It is included in packages tesseract-2.04.exe.tar.gz, tesseract-ocr-3.02-win32-portable.zip and tesseract-ocr-setup-3.02.02.exe. Place piccolo-1.2.jar and piccolox-1.2.jar to the same location (Tesseract-OCR/java). Then set the SCROLLVIEW\_PATH environment variable to point to the java directory.
+The build process for building `ScrollView.jar` is not defined. It is included in packages `tesseract-2.04.exe.tar.gz`, `tesseract-ocr-3.02-win32-portable.zip` and `tesseract-ocr-setup-3.02.02.exe`. Place `piccolo-1.2.jar` and `piccolox-1.2.jar` to the same location (`Tesseract-OCR/java`). Then set the SCROLLVIEW\_PATH environment variable to point to the java directory.
 
 
 ## Segmenter Debug Mode
@@ -144,6 +144,7 @@ The IntMatchWindow should show that the lower case c matches quite well. The fac
 
 In the IntMatchWindow, the correspondence between the features and prototypes is shown. The prototypes are the long thin lines, and the features the shorter thicker lines. The colors from best match to worst go in this somewhat arbitrary sequence: White, Green, Red, Blue. The gray lines should indicate which kind of prototype the unknown matched, but they seem to be one classification behind. The square indicates the static classifier and shows the unit of normalization. The tram-lines indicate an adaptive classification and show the position of the baseline, meanline, descenders and ascenders.
 
+
 ## Other MODE possibilities
 
 In general, the selected MODE will perform some action with blobs or words that you select or click on with the left mouse button.
@@ -156,13 +157,15 @@ Show point is useful to get the coordinates of a specific blob in tesseract coor
 
 About the only other MODEs that do anything are Dump Word, Row Gaps Hist, and Block Gaps Hist, all of which dump information to your terminal window.
 
+
 ## Other Display modes
 
 You can save some display time by not selecting Other/Uniform Display after deselecting Display/Bounding Boxes and selecting Display/Polygonal Approx. Instead, each word that you click on will get redisplayed in the new format
 
+
 ## Troubleshooting
 
-Get the message "kill %1: no such job" in the middle of a bunch of ScrollView: Waiting for server... messages? You have a problem with launching Java. On windows, the error messages should make it out to your terminal window, but on Linux, you will have to edit svutil.cpp to remove the ">/dev/null 2>&1" from the cmd\_template string.
+Get the message "`kill %1: no such job`" in the middle of a bunch of ScrollView: Waiting for server... messages? You have a problem with launching Java. On windows, the error messages should make it out to your terminal window, but on Linux, you will have to edit svutil.cpp to remove the ">/dev/null 2>&1" from the cmd\_template string.
 
 Try to run this command on linux
 ```
