@@ -342,7 +342,7 @@ ffi.cdef("""
 struct Pix;
 typedef struct Pix PIX;
 PIX * pixRead ( const char *filename );
-char * getLeptonicaVersion (  );
+const char * getLeptonicaVersion (  );
 
 typedef struct TessBaseAPI TessBaseAPI;
 typedef int BOOL;
