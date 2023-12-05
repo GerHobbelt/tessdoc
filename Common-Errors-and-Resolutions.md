@@ -1,6 +1,6 @@
 ## Errors during LSTM Training
 
-See  Ray Smith's notes in  [Training Tesseract 4.00](tess4/TrainingTesseract-4.00.md),
+See Ray Smith's notes in [TrainingTesseract 4.00](tess4/TrainingTesseract-4.00.md),
 specifically the section on [errors](tess4/TrainingTesseract-4.00.md#error-messages-from-training).
 
 
@@ -14,7 +14,7 @@ set the locale "C".
 There can be different locale settings if the tesseract library is used
 in other software.
 
-A wrong locale can cause wrong results from sscanf() which is used at
+A wrong locale can cause wrong results from `sscanf()` which is used at
 different places in the tesseract code, so make sure that we have the
 right locale settings and fail if that is not the case.
 
@@ -28,5 +28,5 @@ the original locale after calling the Tesseract API.
 
 ## Errors related to Tesseract CLI
 
-TBD
+*TBD*
 
