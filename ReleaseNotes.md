@@ -284,7 +284,7 @@ _Oct 29 2018_
     * Added a new parameter `lstm_choice_mode` that allows to include alternative symbol choices in the hOCR output.
   * **Other OCR engines**
     * The pattern matching OCR engine that was the primary OCR engine in previous versions is still available in this version.
-    * Removed the 'Cube' OCR engine from the codebase. It was used for Hindi and for Arabic. The New LSTM engine performs much better, thus the  Cube engine was no longer needed.
+    * Removed the 'Cube' OCR engine from the codebase. It was used for Hindi and for Arabic. The New LSTM engine performs much better, thus the Cube engine was no longer needed.
   * **Updated build system**
     * Tesseract now uses [semantic versioning](https://semver.org/).
     * Added an option to compile Tesseract without the code of the legacy OCR engine.
