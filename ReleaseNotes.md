@@ -5,6 +5,8 @@ This page keeps the most up-to-date release notes.
 Table of Contents
 =================
 * [IN DEVELOPMENT](ReleaseNotes.md#in-development)
+* [V5.4.1](#v541) Jun 11 2024
+* [V5.4.0](#v540) Jun 06 2024
 * [V5.3.4](#v534) Jan 18 2024
 * [V5.3.3](#v533), Oct 05 2023
 * [V5.3.2](#v532), Jul 11 2023
@@ -50,10 +52,21 @@ Table of Contents
 * [Binary compatibility report for Tesseract: 4.1.3 vs 5.0.0](https://abi-laboratory.pro/index.php?view=objects_report&l=tesseract&v1=4.1.3&v2=5.0.0)
 * [Binary compatibility report for Tesseract: 3.05.02 vs 4.0.0](https://abi-laboratory.pro/index.php?view=objects_report&l=tesseract&v1=3.05.02&v2=4.0.0)
 
+# V5.4.1
+
+_Jun 11 2024_
+
+https://github.com/tesseract-ocr/tesseract/releases/tag/5.4.1
+
+# V5.4.0
+
+_Jun 06 2024_
+
+https://github.com/tesseract-ocr/tesseract/releases/tag/5.4.0
+
 # V5.3.4
 
 _Jan 18 2024_
-
 
 https://github.com/tesseract-ocr/tesseract/releases/tag/5.3.4
 
@@ -86,6 +99,10 @@ Improve the DebugDump output by slightly adjusting the format. By [\@GerHobbelt]
 * Fix linkage of icu and pango. By [\@autoantwort](https://github.com/autoantwort) in PR #4006.
 * (MSVC debug) Fix wrong lib name in generated file `tesseract.pc`. By [\@autoantwort](https://github.com/autoantwort) in PR #4008.
 * Fix libdir in generated file `tesseract.pc`. By [\@ferdnyc](https://github.com/ferdnyc) in PR #4013.
+
+**Compiler support**
+
+We dropped support for GCC and libstdc++ 8.x.
 
 # V5.3.0
 
