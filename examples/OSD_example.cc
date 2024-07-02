@@ -1,13 +1,23 @@
 #include <tesseract/baseapi.h>
 #include <leptonica/allheaders.h>
 
+#include "monolithic_examples.h"
+
+
+#if defined(BUILD_MONOLITHIC)
+#define main     tessdoc_example_osd_main
+#endif
+
 int main()
 {
     const char* inputfile = "devatest-rotated-270.png";
     PIX *image = pixRead(inputfile);
     tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-    api->Init(NULL, "osd");
-    api->SetPageSegMode(tesseract::PSM_OSD_ONLY);
+    if (api->InitSimple(NULL, "osd")) {
+		fprintf(stderr, "Could not initialize tesseract.\n");
+		return 1;
+	}
+	api->SetPageSegMode(tesseract::PSM_OSD_ONLY);
     api->SetImage(image);
         
     int orient_deg;

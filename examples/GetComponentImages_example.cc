@@ -1,14 +1,21 @@
 #include <tesseract/baseapi.h>
 #include <leptonica/allheaders.h>
+#include <leptonica/pix_internal.h>
+
+#include "monolithic_examples.h"
+
+
+#if defined(BUILD_MONOLITHIC)
+#define main     tessdoc_example_get_component_images_main
+#endif
 
 int main()
 {
-  char *outText;
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
   // Initialize tesseract-ocr with English, without specifying tessdata path
-  if (api->Init(NULL, "eng")) {
+  if (api->InitSimple(NULL, "eng")) {
       fprintf(stderr, "Could not initialize tesseract.\n");
-      exit(1);
+      return 1;
   }
   Pix *image = pixRead("phototest.tif");
   api->SetImage(image);
@@ -22,11 +29,11 @@ int main()
     fprintf(stdout, "Box[%d]: x=%d, y=%d, w=%d, h=%d, confidence: %d, text: %s",
                     i, box->x, box->y, box->w, box->h, conf, ocrResult);
     boxDestroy(&box);
+	delete[] ocrResult;
   }
   // Destroy used object and release memory
   api->End();
   delete api;
-  delete [] outText;
   pixDestroy(&image);
 
   return 0;

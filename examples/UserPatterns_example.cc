@@ -1,16 +1,24 @@
 #include <tesseract/baseapi.h>
 #include <leptonica/allheaders.h>
 
+#include "monolithic_examples.h"
+
+
+#if defined(BUILD_MONOLITHIC)
+#define main     tessdoc_example_user_patterns_main
+#endif
+
 int main()
 {
     Pix *image;
     char *outText;
-    char *configs[]={"path/to/my.patterns.config"};
-    int configs_size = 1;
-    tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-    if (api->Init(NULL, "eng", tesseract::OEM_LSTM_ONLY, configs, configs_size, NULL, NULL, false)) {
+	std::vector<std::string> configs{"path/to/my.patterns.config"};
+	std::vector<std::string> vars;   // empty
+	std::vector<std::string> values; // empty
+	tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
+    if (api->InitFull(NULL, "eng", tesseract::OEM_LSTM_ONLY, configs, vars, values)) {
       fprintf(stderr, "Could not initialize tesseract.\n");
-      exit(1);
+      return 1;
     }
     image = pixRead("Arial.png");
     api->SetImage(image);

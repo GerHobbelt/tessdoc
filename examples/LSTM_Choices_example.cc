@@ -1,12 +1,20 @@
 #include <tesseract/baseapi.h>
 #include <leptonica/allheaders.h>
+
+#include "monolithic_examples.h"
+
+
+#if defined(BUILD_MONOLITHIC)
+#define main     tessdoc_example_lstm_choices_main
+#endif
+
 int main()
 {
     tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
 // Initialize tesseract-ocr with English, without specifying tessdata path
-    if (api->Init(NULL, "eng")) {
+    if (api->InitSimple(NULL, "eng")) {
         fprintf(stderr, "Could not initialize tesseract.\n");
-        exit(1);
+        return 1;
     }
 // Open input image with leptonica library
   Pix *image = pixRead("choices.png");

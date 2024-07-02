@@ -12,16 +12,30 @@
 #include <string>
 #include <tesseract/baseapi.h>
 
-int main(int argc, char *argv[]) {
+#include "monolithic_examples.h"
+
+
+#if defined(BUILD_MONOLITHIC)
+#define main     tessdoc_example_openCV_main
+#endif
+
+int main(int argc, const char **argv) {
 
   std::string outText, imPath = argv[1];
   cv::Mat im = cv::imread(imPath, cv::IMREAD_COLOR);
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
 
-  api->Init(NULL, "eng", tesseract::OEM_LSTM_ONLY);
+  if (api->InitOem(NULL, "eng", tesseract::OEM_LSTM_ONLY)) {
+	  fprintf(stderr, "Could not initialize tesseract.\n");
+	  return 1;
+  }
   api->SetPageSegMode(tesseract::PSM_AUTO);
   api->SetImage(im.data, im.cols, im.rows, 3, im.step);
-  outText = std::string(api->GetUTF8Text());
+  {
+	  char* txt = api->GetUTF8Text();
+	  outText = std::string(txt);
+	  delete[] txt;
+  }
   std::cout << outText;
   api->End();
   delete api;
