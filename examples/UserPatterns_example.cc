@@ -12,11 +12,9 @@ int main()
 {
     Pix *image;
     char *outText;
-	std::vector<std::string> configs{"path/to/my.patterns.config"};
-	std::vector<std::string> vars;   // empty
-	std::vector<std::string> values; // empty
+	std::vector<std::string> configs{"my.patterns.config"};
 	tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-    if (api->InitFull(NULL, "eng", tesseract::OEM_LSTM_ONLY, configs, vars, values)) {
+    if (api->InitFull(NULL, "eng", tesseract::OEM_LSTM_ONLY, configs)) {
       fprintf(stderr, "Could not initialize tesseract.\n");
       return 1;
     }

@@ -1,6 +1,6 @@
 # API examples
 
-This documentation provides simple examples on how to use the tesseract-ocr API (v3.02.02-4.0.0) in C++.
+This documentation provides simple examples on how to use the tesseract-ocr API (v3.02.02-5.4.1) in C++.
 It is expected that tesseract-ocr is correctly installed including all dependencies.
 It is expected the user is familiar with C++, compiling and linking program on their platform, [though basic compilation examples are included for beginners with Linux](#compiling-c-api-programs-on-linux).
 
@@ -10,7 +10,7 @@ More details about tesseract-ocr API can be found at [baseapi.h](https://github.
 
 ## Basic example
 
-Code:
+Code (`examples/Basic_example.cc`):
 
 ```c++
 #include <tesseract/baseapi.h>
@@ -24,7 +24,7 @@ int main()
     // Initialize tesseract-ocr with English, without specifying tessdata path
     if (api->Init(NULL, "eng")) {
         fprintf(stderr, "Could not initialize tesseract.\n");
-        exit(1);
+        return 1;
     }
 
     // Open input image with leptonica library
@@ -47,17 +47,32 @@ int main()
 The program must be linked to the tesseract-ocr and leptonica libraries.
 
 If you want to restrict recognition to a sub-rectangle of the image - call _SetRectangle(left, top, width, height)_ after SetImage. Each SetRectangle clears the recognition results so multiple rectangles can be recognized with the same image. E.g.
+
 ```c++
   api->SetRectangle(30, 86, 590, 100);
 ```
 
+See also the C++ example source file: `examples/SetRectangle_example.cc`
+
 
 ## GetComponentImages example
 
+Code (`examples/GetComponentImages_example.cc`):
+
 ```c++
-  Pix *image = pixRead("/usr/src/tesseract/testing/phototest.tif");
+#include <tesseract/baseapi.h>
+#include <leptonica/allheaders.h>
+#include <leptonica/pix_internal.h>
+
+int main()
+{
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-  api->Init(NULL, "eng");
+  // Initialize tesseract-ocr with English, without specifying tessdata path
+  if (api->InitSimple(NULL, "eng")) {
+      fprintf(stderr, "Could not initialize tesseract.\n");
+      return 1;
+  }
+  Pix *image = pixRead("/usr/src/tesseract/testing/phototest.tif");
   api->SetImage(image);
   Boxa* boxes = api->GetComponentImages(tesseract::RIL_TEXTLINE, true, NULL, NULL);
   printf("Found %d textline image components.\n", boxes->n);
@@ -69,18 +84,33 @@ If you want to restrict recognition to a sub-rectangle of the image - call _SetR
     fprintf(stdout, "Box[%d]: x=%d, y=%d, w=%d, h=%d, confidence: %d, text: %s",
                     i, box->x, box->y, box->w, box->h, conf, ocrResult);
     boxDestroy(&box);
+	delete[] ocrResult;
   }
+  // Destroy used object and release memory
+  api->End();
   delete api;
+  pixDestroy(&image);
+
+  return 0;
+}
 ```
 
 ## Result iterator example
 
-It is possible to get confidence value and BoundingBox per word from a ResultIterator:
+It is possible to get the confidence value and BoundingBox per word from a ResultIterator.
+
+Code (`examples/ResultIterator_example.cc`):
 
 ```c++
-  Pix *image = pixRead("/usr/src/tesseract/testing/phototest.tif");
+int main()
+{
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-  api->Init(NULL, "eng");
+  // Initialize tesseract-ocr with English, without specifying tessdata path
+  if (api->InitSimple(NULL, "eng")) {
+      fprintf(stderr, "Could not initialize tesseract.\n");
+      return 1;
+  }
+  Pix *image = pixRead("/usr/src/tesseract/testing/phototest.tif");
   api->SetImage(image);
   api->Recognize(0);
   tesseract::ResultIterator* ri = api->GetIterator();
@@ -96,7 +126,12 @@ It is possible to get confidence value and BoundingBox per word from a ResultIte
       delete[] word;
     } while (ri->Next(level));
   }
+  // Destroy used object and release memory
+  api->End();
   delete api;
+  pixDestroy(&image);
+  return 0;
+}
 ```
 
 It is also possible to use other iterator levels (block, line, word, etc.), see [PageiteratorLevel](https://github.com/tesseract-ocr/tesseract/blob/a7a729f6c315e751764b72ea945da961638effc5/include/tesseract/publictypes.h#L216-L222).
@@ -105,8 +140,10 @@ It is also possible to use other iterator levels (block, line, word, etc.), see 
 
 ## Orientation and script detection (OSD) example
 
+Code (`examples/OSD_alt_example.cc`):
+
 ```c++
-  const char* inputfile = "/usr/src/tesseract/testing/eurotext.tif";
+  const char* inputfile = "/usr/src/tesseract/testing/devatest-rotated-270.png";
   tesseract::Orientation orientation;
   tesseract::WritingDirection direction;
   tesseract::TextlineOrder order;
@@ -129,14 +166,59 @@ It is also possible to use other iterator levels (block, line, word, etc.), see 
 
 Explanation for result codes are in [publictypes.h](https://github.com/tesseract-ocr/tesseract/blob/a7a729f6c315e751764b72ea945da961638effc5/include/tesseract/publictypes.h#L116-L121)
 
+An easier and potentially faster approach using the tesseract v5 API is shown below.
+
+Code (`examples/OSD_example.cc`):
+
+```c++
+#include <tesseract/baseapi.h>
+#include <leptonica/allheaders.h>
+
+int main()
+{
+    const char* inputfile = "/usr/src/tesseract/testing/devatest-rotated-270.png";
+    PIX *image = pixRead(inputfile);
+    tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
+    if (api->InitSimple(NULL, "osd")) {
+		fprintf(stderr, "Could not initialize tesseract.\n");
+		return 1;
+	}
+	api->SetPageSegMode(tesseract::PSM_OSD_ONLY);
+    api->SetImage(image);
+        
+    int orient_deg;
+    float orient_conf;
+    const char* script_name;
+    float script_conf;
+    api->DetectOrientationScript(&orient_deg, &orient_conf, &script_name, &script_conf);
+    printf("************\n Orientation in degrees: %d\n Orientation confidence: %.2f\n"
+    " Script: %s\n Script confidence: %.2f\n",
+    orient_deg, orient_conf,
+    script_name, script_conf);
+    
+    // Destroy used object and release memory
+    api->End();
+    delete api;
+    pixDestroy(&image);
+    
+    return 0;
+}
+```
 
 ## Example of iterator over the classifier choices for a single symbol
 
-```c++
+Code (`examples/ChoicesIterator_example.cc`):
 
+```c++
+int main()
+{
   Pix *image = pixRead("/usr/src/tesseract/testing/phototest.tif");
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-  api->Init(NULL, "eng");
+  // Initialize tesseract-ocr with English, without specifying tessdata path
+  if (api->InitSimple(NULL, "eng")) {
+      fprintf(stderr, "Could not initialize tesseract.\n");
+      return 1;
+  }
   api->SetImage(image);
   api->SetVariable("save_blob_choices", "T");
   api->SetRectangle(37, 228, 548, 31);
@@ -164,10 +246,17 @@ Explanation for result codes are in [publictypes.h](https://github.com/tesseract
           delete[] symbol;
       } while((ri->Next(level)));
   }
+  // Destroy used object and release memory
+  api->End();
   delete api;
+  pixDestroy(&image);
+  return 0;
+}
 ```
 
 ## Example to get confidence for alternative symbol choices per character for LSTM
+
+Code (`examples/LSTM_Choices_example.cc`):
 
 ```c++
 #include <tesseract/baseapi.h>
@@ -178,18 +267,18 @@ int main()
 // Initialize tesseract-ocr with English, without specifying tessdata path
     if (api->Init(NULL, "eng")) {
         fprintf(stderr, "Could not initialize tesseract.\n");
-        exit(1);
+        return 1;
     }
 // Open input image with leptonica library
-  Pix *image = pixRead("/home/ubuntu/tesseract/test/testing/trainingital.tif");
+  Pix *image = pixRead("/usr/src/tesseract/testing/trainingital.tif");
   api->SetImage(image);
 // Set lstm_choice_mode to alternative symbol choices per character, bbox is at word level.
   api->SetVariable("lstm_choice_mode", "2");
   api->Recognize(0);
   tesseract::PageIteratorLevel level = tesseract::RIL_WORD;
   tesseract::ResultIterator* res_it = api->GetIterator();
-// Get confidence level for alternative symbol choices. Code is based on
-// https://github.com/tesseract-ocr/tesseract/blob/a7a729f6c315e751764b72ea945da961638effc5/src/api/hocrrenderer.cpp#L325-L344
+  // Get confidence level for alternative symbol choices. Code is based on
+  // https://github.com/tesseract-ocr/tesseract/blob/a7a729f6c315e751764b72ea945da961638effc5/src/api/hocrrenderer.cpp#L325-L344
   std::vector<std::vector<std::pair<const char*, float>>>* choiceMap = nullptr;
   if (res_it != 0) {
     do {
@@ -220,12 +309,13 @@ int main()
   pixDestroy(&image);
   return 0;
 }
-
 ```
 
 ## Example to get HOCR output with alternative symbol choices per character (LSTM)
 
 This is similar to running tesseract from commandline with `-c lstm_choice_mode=2 hocr`.
+
+Code (`examples/HOCR_altsym_example.cc`):
 
 ```c++
 #include <tesseract/baseapi.h>
@@ -236,21 +326,22 @@ int main()
     char *outText;
 
     tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-// Initialize tesseract-ocr with English, without specifying tessdata path
+	// Initialize tesseract-ocr with English, without specifying tessdata path
     if (api->Init(NULL, "eng")) {
         fprintf(stderr, "Could not initialize tesseract.\n");
         exit(1);
     }
 
-// Open input image with leptonica library
-    Pix *image = pixRead("/tesseract/test/testing/trainingital.tif");
+	// Open input image with leptonica library
+    Pix *image = pixRead("/usr/src/tesseract/testing/trainingital.tif");
     api->SetImage(image);
     api->SetVariable("lstm_choice_mode", "2");
-// Get HOCR result
+
+	// Get HOCR result
     outText = api->GetHOCRText(0);
     printf("HOCR alternative symbol choices  per character :\n%s", outText);
 
-// Destroy used object and release memory
+	// Destroy used object and release memory
     api->End();
     delete api;
     delete [] outText;
@@ -302,7 +393,7 @@ import os
 import ctypes
 
 lang = "eng"
-filename = "/usr/src/tesseract-ocr/phototest.tif"
+filename = "/usr/src/tesseract/testing/phototest.tif"
 libname = "/usr/local/lib64/libtesseract.so.3"
 TESSDATA_PREFIX = os.environ.get('TESSDATA_PREFIX')
 if not TESSDATA_PREFIX:
@@ -392,14 +483,16 @@ print(orient_conf[0])
 
 The C-API can of course also be used by regular C programs, as in this very basic example.
 
+Code (`examples/C_API_example.c`):
+
 ```c
 #include <stdio.h>
 #include <allheaders.h>
 #include <capi.h>
 
-void die(const char *errstr) {
+static int die(const char *errstr) {
 	fputs(errstr, stderr);
-	exit(1);
+	return EXIT_FAILURE;
 }
 
 int main(int argc, char *argv[]) {
@@ -408,18 +501,18 @@ int main(int argc, char *argv[]) {
 	char *text;
 
 	if((img = pixRead("img.png")) == NULL)
-		die("Error reading image\n");
+		return die("Error reading image\n");
 
 	handle = TessBaseAPICreate();
 	if(TessBaseAPIInit3(handle, NULL, "eng") != 0)
-		die("Error initializing tesseract\n");
+		return die("Error initializing tesseract\n");
 
 	TessBaseAPISetImage2(handle, img);
 	if(TessBaseAPIRecognize(handle, NULL) != 0)
-		die("Error in Tesseract recognition\n");
+		return die("Error in Tesseract recognition\n");
 
 	if((text = TessBaseAPIGetUTF8Text(handle)) == NULL)
-		die("Error getting text\n");
+		return die("Error getting text\n");
 
 	fputs(text, stdout);
 
@@ -428,13 +521,15 @@ int main(int argc, char *argv[]) {
 	TessBaseAPIDelete(handle);
 	pixDestroy(&img);
 
-	return 0;
+	return EXIT_SUCCESS;
 }
 ```
 
 On Linux you can [compile it as you would build a program using the C++ API](#compiling-c-api-programs-on-linux).
 
 # Example creating searchable pdf from image in C++
+
+Code (`examples/searchable_PDF_example.cc`):
 
 ```c++
 #include <leptonica/allheaders.h>
@@ -443,7 +538,7 @@ On Linux you can [compile it as you would build a program using the C++ API](#co
 
 int main()
 {
-    const char* input_image = "/usr/src/tesseract-oc/testing/phototest.tif";
+    const char* input_image = "/usr/src/tesseract/testing/phototest.tif";
     const char* output_base = "my_first_tesseract_pdf";
     const char* datapath = "/Projects/OCR/tesseract/tessdata";
     int timeout_ms = 5000;
@@ -454,7 +549,7 @@ int main()
     tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
     if (api->Init(datapath, "eng")) {
         fprintf(stderr, "Could not initialize tesseract.\n");
-        exit(1);
+        return EXIT_FAILURE;
     }
 
     tesseract::TessPDFRenderer *renderer = new tesseract::TessPDFRenderer(
@@ -473,16 +568,18 @@ int main()
 
 # Example of monitoring OCR progress in C++
 
+Code (`examples/monitoring_example.cc`):
+
 ```c++
 #include <tesseract/baseapi.h>
 #include <tesseract/ocrclass.h>
 #include <leptonica/allheaders.h>
 #include <thread>
 
-void monitorProgress(ETEXT_DESC *monitor, int page);
-void ocrProcess(tesseract::TessBaseAPI *api, ETEXT_DESC *monitor);
+static void monitorProgress(ETEXT_DESC *monitor, int page);
+static void ocrProcess(tesseract::TessBaseAPI *api, ETEXT_DESC *monitor);
 
-void monitorProgress(ETEXT_DESC *monitor, int page) {
+static void monitorProgress(ETEXT_DESC *monitor, int page) {
     while (1) {
         printf( "\r%3d%%", monitor[page].progress);
         fflush (stdout);
@@ -491,7 +588,7 @@ void monitorProgress(ETEXT_DESC *monitor, int page) {
     }
 }
 
-void ocrProcess(tesseract::TessBaseAPI *api, ETEXT_DESC *monitor) {
+static void ocrProcess(tesseract::TessBaseAPI *api, ETEXT_DESC *monitor) {
     api->Recognize(monitor);
 }
 
@@ -503,7 +600,7 @@ int main() {
         return 1;
     }
     api->SetPageSegMode(tesseract::PSM_AUTO);
-    Pix *image = pixRead("/tesseract-ocr/test/testing/phototest.tif");
+    Pix *image = pixRead("/usr/src/tesseract/testing/phototest.tif");
     if (!image) {
        fprintf(stderr, "Leptonica can't process input file!\n");
        return 2;
@@ -516,9 +613,8 @@ int main() {
     t2.join();
     pixDestroy(&image);
     char *outText = api->GetUTF8Text();
-    printf("\n%s", outText);
-    if (outText)
-       delete [] outText;
+    printf("\n%s\n", outText);
+    delete [] outText;
     api->End();
     delete api;
     return 0;

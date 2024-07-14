@@ -65,6 +65,8 @@ Take the following _image file_ (`Arial.png`) as input:
 
 The following code uses the above _user patterns file_ and _config file_ on that _image file_:
 
+Code (`examples/UserPatterns_example.cc`):
+
 ```C++
 #include <tesseract/baseapi.h>
 #include <leptonica/allheaders.h>
@@ -78,7 +80,7 @@ int main()
     tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
     if (api->Init(NULL, "eng", tesseract::OEM_LSTM_ONLY, configs, configs_size, NULL, NULL, false)) {
       fprintf(stderr, "Could not initialize tesseract.\n");
-      exit(1);
+      return 1;
     }
     image = pixRead("Arial.png");
     api->SetImage(image);

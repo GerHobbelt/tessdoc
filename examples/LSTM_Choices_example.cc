@@ -24,8 +24,8 @@ int main()
   api->Recognize(0);
   tesseract::PageIteratorLevel level = tesseract::RIL_WORD;
   tesseract::ResultIterator* res_it = api->GetIterator();
-// Get confidence level for alternative symbol choices. Code is based on 
-// https://github.com/tesseract-ocr/tesseract/blob/main/src/api/hocrrenderer.cpp#L325-L344
+  // Get confidence level for alternative symbol choices. Code is based on
+  // https://github.com/tesseract-ocr/tesseract/blob/main/src/api/hocrrenderer.cpp#L325-L344
   std::vector<std::vector<std::pair<const char*, float>>>* choiceMap = nullptr;
   if (res_it != 0) {
     do {
@@ -50,9 +50,9 @@ int main()
       }
     } while (res_it->Next(level));
   }
-// Destroy used object and release memory
-    api->End();
-    delete api;
-    pixDestroy(&image);
-    return 0;
+  // Destroy used object and release memory
+  api->End();
+  delete api;
+  pixDestroy(&image);
+  return 0;
 }

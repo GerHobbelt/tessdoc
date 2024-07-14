@@ -23,7 +23,7 @@ int main()
   tesseract::PageIteratorLevel level = tesseract::RIL_WORD;
   if (ri != 0) {
     do {
-      char* word = ri->GetUTF8Text(level);
+      const char* word = ri->GetUTF8Text(level);
       float conf = ri->Confidence(level);
       int x1, y1, x2, y2;
       ri->BoundingBox(level, &x1, &y1, &x2, &y2);
