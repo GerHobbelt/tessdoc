@@ -10,6 +10,7 @@
 #define main     tessdoc_example_monitoring_main
 #endif
 
+using namespace tesseract;
 
 static void monitorProgress(ETEXT_DESC *monitor, int page);
 static void ocrProcess(tesseract::TessBaseAPI *api, ETEXT_DESC *monitor);
@@ -17,7 +18,7 @@ static void ocrProcess(tesseract::TessBaseAPI *api, ETEXT_DESC *monitor);
 static void monitorProgress(ETEXT_DESC *monitor, int page) {
     while (1) {
         printf( "\r%3d%%", monitor[page].progress);
-        fflush (stdout);
+        fflush(stdout);
         if (monitor[page].progress==100)
             break;
     }
@@ -30,7 +31,7 @@ static void ocrProcess(tesseract::TessBaseAPI *api, ETEXT_DESC *monitor) {
 int main() {
     tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
     ETEXT_DESC *monitor = new ETEXT_DESC();
-    if (api->Init("/tesseract/tessdata_best", "eng")) {
+    if (api->InitSimple("/tesseract/tessdata_best", "eng")) {
         fprintf(stderr, "Could not initialize tesseract.\n");
         return 1;
     }

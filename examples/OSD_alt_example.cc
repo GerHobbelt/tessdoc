@@ -19,7 +19,7 @@ int main()
 
   PIX *image = pixRead(inputfile);
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-    if (api->Init("/usr/src/tesseract/", "eng")) {
+    if (api->InitSimple("/usr/src/tesseract/", "eng")) {
 		fprintf(stderr, "Could not initialize tesseract.\n");
 		return 1;
 	}

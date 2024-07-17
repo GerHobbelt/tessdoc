@@ -542,7 +542,6 @@ int main()
     const char* output_base = "my_first_tesseract_pdf";
     const char* datapath = "/Projects/OCR/tesseract/tessdata";
     int timeout_ms = 5000;
-    const char* retry_config = nullptr;
     bool textonly = false;
     int jpg_quality = 92;
 
@@ -555,7 +554,7 @@ int main()
     tesseract::TessPDFRenderer *renderer = new tesseract::TessPDFRenderer(
               output_base, api->GetDatapath(), textonly, jpg_quality);
 
-    bool succeed = api->ProcessPages(input_image, retry_config, timeout_ms, renderer);
+    bool succeed = api->ProcessPages(input_image, timeout_ms, renderer);
     if (!succeed) {
       fprintf(stderr, "Error during processing.\n");
       return EXIT_FAILURE;
