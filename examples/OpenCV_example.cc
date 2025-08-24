@@ -25,7 +25,7 @@ int main(int argc, const char **argv) {
   cv::Mat im = cv::imread(imPath, cv::IMREAD_COLOR);
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
 
-  if (api->InitOem(NULL, "eng", tesseract::OEM_LSTM_ONLY)) {
+  if (api->Init(NULL, "eng", tesseract::OEM_LSTM_ONLY)) {
 	  fprintf(stderr, "Could not initialize tesseract.\n");
 	  return 1;
   }

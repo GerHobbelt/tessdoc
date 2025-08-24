@@ -13,14 +13,14 @@ int main()
   Pix *image = pixRead("phototest.tif");
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
   // Initialize tesseract-ocr with English, without specifying tessdata path
-  if (api->InitSimple(NULL, "eng")) {
+  if (api->Init(NULL, "eng")) {
       fprintf(stderr, "Could not initialize tesseract.\n");
       return 1;
   }
   api->SetImage(image);
   api->SetVariable("save_blob_choices", "T");
   api->SetRectangle(37, 228, 548, 31);
-  api->Recognize(NULL);
+  api->Recognize();
 
   tesseract::ResultIterator* ri = api->GetIterator();
   tesseract::PageIteratorLevel level = tesseract::RIL_SYMBOL;

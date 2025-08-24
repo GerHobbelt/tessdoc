@@ -19,13 +19,13 @@ int main()
 
   PIX *image = pixRead(inputfile);
   tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-    if (api->InitSimple("/usr/src/tesseract/", "eng")) {
+    if (api->Init("/usr/src/tesseract/", "eng")) {
 		fprintf(stderr, "Could not initialize tesseract.\n");
 		return 1;
 	}
   api->SetPageSegMode(tesseract::PSM_AUTO_OSD);
   api->SetImage(image);
-  api->Recognize(0);
+  api->Recognize();
 
   tesseract::PageIterator* it =  api->AnalyseLayout();
   it->Orientation(&orientation, &direction, &order, &deskew_angle);

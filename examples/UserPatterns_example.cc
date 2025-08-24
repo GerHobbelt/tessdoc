@@ -14,7 +14,7 @@ int main()
     char *outText;
 	std::vector<std::string> configs{"my.patterns.config"};
 	tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-    if (api->InitFull(NULL, "eng", tesseract::OEM_LSTM_ONLY, configs)) {
+    if (api->Init(NULL, "eng", tesseract::OEM_LSTM_ONLY, configs)) {
       fprintf(stderr, "Could not initialize tesseract.\n");
       return 1;
     }

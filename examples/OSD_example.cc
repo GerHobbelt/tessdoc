@@ -13,7 +13,7 @@ int main()
     const char* inputfile = "devatest-rotated-270.png";
     PIX *image = pixRead(inputfile);
     tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-    if (api->InitSimple(NULL, "osd")) {
+    if (api->Init(NULL, "osd")) {
 		fprintf(stderr, "Could not initialize tesseract.\n");
 		return 1;
 	}

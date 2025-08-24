@@ -20,7 +20,7 @@ int main()
     int jpg_quality = 92;
 
     tesseract::TessBaseAPI *api = new tesseract::TessBaseAPI();
-    if (api->InitSimple(datapath, "eng")) {
+    if (api->Init(datapath, "eng")) {
         fprintf(stderr, "Could not initialize tesseract.\n");
         return EXIT_FAILURE;
     }
