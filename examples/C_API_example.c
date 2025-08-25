@@ -14,7 +14,7 @@ static int die(const char *errstr) {
 	return EXIT_FAILURE;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
 	TessBaseAPI *handle;
 	PIX *img;
 	char *text;
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 		return die("Error initializing tesseract\n");
 
 	TessBaseAPISetImage2(handle, img);
-	if(TessBaseAPIRecognize(handle, NULL) != 0)
+	if(TessBaseAPIRecognize(handle) != 0)
 		return die("Error in Tesseract recognition\n");
 
 	if((text = TessBaseAPIGetUTF8Text(handle)) == NULL)

@@ -7,7 +7,7 @@
 
 
 #if defined(BUILD_MONOLITHIC)
-#define main     tessdoc_example_monitoring_main
+#define main     tessdoc_example_monitoring_cpp20_main
 #endif
 
 using namespace tesseract;
