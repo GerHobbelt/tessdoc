@@ -3,7 +3,7 @@
 ### Windows
 
 * Windows 11
-* Windows 10
+* Windows 10 (Until Oct 2027)
 
 Older versions are not supported.
 
